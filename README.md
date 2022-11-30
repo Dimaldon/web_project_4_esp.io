@@ -1,16 +1,25 @@
-# Proyecto 4: Alrededor de los Estados Unidos
+# Proyecto 4 "Alrededor de los EE.UU."
 
-### Descripción general
+## Descripción del proyecto:
 
-* Figma
-* Imágenes
+El presente proyecto pretende crear un sitio web de una sola página que se adapte a dispositivos móviles y desktops, donde integramos por primera ocasión JavaScript y los conocimientos adquiridos durante el sprint 1, 2, 3 y 4 del bootcamp de Practicum.
 
-**Figma**
+## Tecnologías utilizadas:
 
-* [Enlace al proyecto en Figma](https://www.figma.com/file/LDMgqWesKpQkIwhOfEBuTS/WEB%2C-Sprint-5%3A-Around-The-U.S.-%7C-desktop-%2B-mobile?node-id=0%3A1)
+- HTML y CSS
+- Uso de Flexbox y Grid
+- Metología BEM
+- Posicionamiento de elementos
+- Estructuras y rutas de archivos
+- Git
+- Animación y transformación con CSS
+- JavaScript
+- Debugging
 
-**Imágenes**
+## Planes para finalizar el proyecto:
 
-A la hora de trabajar, debes optar por exportar las imágenes directamente desde Figma; te recomendamos hacerlo para practicar más. No olvides optimizarlas [aquí](https://tinypng.com/), para que tu proyecto cargue más rápido. 
+Intentar integrar más acciones con JavaScript.
 
-¡Esperamos que te diviertas con JavaScript!
+## Link del proyecto en git:
+
+[Proyecto 4 Alrededor de los EE.UU.](https://dimaldon.github.io/web_project_3_esp/)

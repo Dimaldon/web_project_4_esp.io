@@ -29,6 +29,11 @@
 @import url(../blocks/footer/__text/footer__text.css);
 
 @import url(../blocks/overlay/overlay.css);
+@import url(../blocks/overlay/__form/overlay__form.css);
+@import url(../blocks/overlay/__title/overlay__title.css);
 @import url(../blocks/overlay/__visible/overlay__visible.css);
 @import url(../blocks/overlay/__content/overlay__content.css);
 @import url(../blocks/overlay/__form-input-group/overlay__form-input-group.css);
+@import url(../blocks/overlay/__text-input/overlay__text-input.css);
+@import url(../blocks/overlay/__form-submit-button/overlay__form-submit-button.css);
+@import url(../blocks/overlay/__form-close-button/overlay__form-close-button.css);
