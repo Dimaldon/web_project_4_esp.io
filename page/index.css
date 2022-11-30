@@ -37,5 +37,3 @@
 @import url(../blocks/overlay/__text-input/overlay__text-input.css);
 @import url(../blocks/overlay/__form-submit-button/overlay__form-submit-button.css);
 @import url(../blocks/overlay/__form-close-button/overlay__form-close-button.css);
-
-@import url("../page/index.js");
