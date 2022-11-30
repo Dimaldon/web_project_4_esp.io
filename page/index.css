@@ -29,3 +29,6 @@
 @import url(../blocks/footer/__text/footer__text.css);
 
 @import url(../blocks/overlay/overlay.css);
+@import url(../blocks/overlay/__visible/overlay__visible.css);
+@import url(../blocks/overlay/__content/overlay__content.css);
+@import url(../blocks/overlay/__form-input-group/overlay__form-input-group.css);
