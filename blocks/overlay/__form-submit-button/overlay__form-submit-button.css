@@ -2,8 +2,8 @@
   border: none;
   width: 358px;
   height: 50.15px;
-  margin-left: 36px;
-  margin-right: 36px;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 48px;
   border-radius: 2px;
   background-color: #000;
@@ -25,8 +25,8 @@
   .overlay__form-submit-button {
     width: 238px;
     height: 46px;
-    margin-left: 2px;
-    margin-right: 22px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 46px;
     font-size: 14px;
     line-height: 17px;
