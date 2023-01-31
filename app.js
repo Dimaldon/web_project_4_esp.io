@@ -38,7 +38,7 @@ closeButton.addEventListener("click", closeOverlay);
 editButton.addEventListener("click", openOverlay);
 document.addEventListener("keypress", keyPress);
 
-/*   ************** INCIA CODIGO DE LA GALERIA **************    */
+/* inicia codigo de la galeria */
 
 const initialCards = [
   {
