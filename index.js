@@ -18,8 +18,10 @@ function keyPress(evt) {
   }
 }
 
-function handleProfileFormSubmit(event) {
-  event.preventDefault();
+/* inicia codigo del formulario */
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
 
   const nameInput = document.querySelector("input[name='name-input']");
   const jobInput = document.querySelector("input[name='job-input']");
@@ -36,7 +38,7 @@ function handleProfileFormSubmit(event) {
 formElement.addEventListener("submit", handleProfileFormSubmit);
 closeButton.addEventListener("click", closeOverlay);
 editButton.addEventListener("click", openOverlay);
-document.addEventListener("keypress", keyPress);
+document.addEventListener("keydown", keyPress);
 
 /* inicia codigo de la galeria */
 
@@ -67,12 +69,12 @@ const initialCards = [
   },
 ];
 
-const renderGallery = (data, parentElement) => {
+const renderGallery = () => {
   //obtener grid de la galeria
-  const grid = document.querySelector(parentElement);
+  const grid = document.querySelector(".elements__grid");
 
-  data.forEach((item) => {
-    //crea nodo contenedor
+  initialCards.forEach((item) => {
+    //crea nodo contenedor de la galeria
     const element = document.createElement("div");
     element.className = "element";
     grid.appendChild(element);
@@ -101,4 +103,4 @@ const renderGallery = (data, parentElement) => {
   });
 };
 
-renderGallery(initialCards, ".elements__grid");
+renderGallery();
