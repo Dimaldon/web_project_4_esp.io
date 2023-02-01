@@ -42,7 +42,7 @@
       <p class="footer__text">© 2021 Alrededor de los EE.UU.</p>
     </footer>
 
-    <!-- inicia pop-up -->
+    <!-- pop-up edit profile -->
 
     <section class="overlay">
       <div class="overlay__content">
@@ -76,7 +76,39 @@
       </div>
     </section>
 
-    <!-- termina pop-up -->
+    <!-- pop-up add new place -->
+
+    <section class="overlay">
+      <div class="overlay__content">
+        <form class="overlay__form">
+          <h2 class="overlay__title">Edit profile</h2>
+          <div class="overlay__form-input-grup">
+            <input
+              class="overlay__text-input"
+              type="text"
+              name="name-input"
+              value="Jack Cousteau"
+              placeholder="Escribe el nombre"
+            />
+          </div>
+          <div class="overlay__form-input-grup">
+            <input
+              class="overlay__text-input"
+              type="text"
+              name="job-input"
+              value="Explorer, researcher"
+              placeholder="Escribe la ocupación"
+            />
+          </div>
+
+          <button class="overlay__form-submit-button" type="submit">
+            Guardar
+          </button>
+
+          <button class="overlay__form-close-button"></button>
+        </form>
+      </div>
+    </section>
 
     <script src="index.js"></script>
   </body>

@@ -12,7 +12,7 @@ function closeOverlay() {
   overlayElement.classList.remove("overlay__visible");
 }
 
-function keyPress(evt) {
+function handleEscClose(evt) {
   if (evt.key === "Escape") {
     closeOverlay();
   }
@@ -38,7 +38,7 @@ function handleProfileFormSubmit(evt) {
 formElement.addEventListener("submit", handleProfileFormSubmit);
 closeButton.addEventListener("click", closeOverlay);
 editButton.addEventListener("click", openOverlay);
-document.addEventListener("keydown", keyPress);
+document.addEventListener("keydown", handleEscClose);
 
 /* inicia codigo de la galeria */
 
