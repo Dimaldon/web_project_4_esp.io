@@ -44,16 +44,17 @@
 
     <!-- pop-up edit profile -->
 
-    <section class="overlay">
+    <section class="overlay" id="overlay__profile-edit">
       <div class="overlay__content">
-        <form class="overlay__form">
+        <form class="overlay__form" id="profileForm">
           <h2 class="overlay__title">Edit profile</h2>
           <div class="overlay__form-input-grup">
             <input
               class="overlay__text-input"
               type="text"
-              name="name-input"
-              value="Jack Cousteau"
+              name="name"
+              id="name"
+              value="Jacques Cousteau"
               placeholder="Escribe el nombre"
             />
           </div>
@@ -61,8 +62,9 @@
             <input
               class="overlay__text-input"
               type="text"
-              name="job-input"
-              value="Explorer, researcher"
+              name="job"
+              id="job"
+              value="Explorador"
               placeholder="Escribe la ocupación"
             />
           </div>
@@ -71,41 +73,49 @@
             Guardar
           </button>
 
-          <button class="overlay__form-close-button"></button>
+          <button
+            class="overlay__form-close-button"
+            id="closeProfileOverlay"
+            type="button"
+          ></button>
         </form>
       </div>
     </section>
 
     <!-- pop-up add new place -->
 
-    <section class="overlay">
+    <section class="overlay" id="overlay__card-add">
       <div class="overlay__content">
-        <form class="overlay__form">
-          <h2 class="overlay__title">Edit profile</h2>
+        <form class="overlay__form" id="imageForm">
+          <h2 class="overlay__title">Nuevo lugar</h2>
           <div class="overlay__form-input-grup">
             <input
               class="overlay__text-input"
               type="text"
-              name="name-input"
-              value="Jack Cousteau"
-              placeholder="Escribe el nombre"
+              name="place"
+              id="place"
+              placeholder="Título"
             />
           </div>
           <div class="overlay__form-input-grup">
             <input
               class="overlay__text-input"
               type="text"
-              name="job-input"
-              value="Explorer, researcher"
-              placeholder="Escribe la ocupación"
+              name="imageURL"
+              id="imageURL"
+              placeholder="Enlace a la imagen"
             />
           </div>
 
           <button class="overlay__form-submit-button" type="submit">
-            Guardar
+            Crear
           </button>
 
-          <button class="overlay__form-close-button"></button>
+          <button
+            class="overlay__form-close-button"
+            id="closeImageOverlay"
+            type="button"
+          ></button>
         </form>
       </div>
     </section>

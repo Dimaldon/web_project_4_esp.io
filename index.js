@@ -1,47 +1,3 @@
-const formElement = document.querySelector(".overlay__form");
-const closeButton = document.querySelector(".overlay__form-close-button");
-const editButton = document.querySelector(".profile__button-edit");
-
-function openOverlay() {
-  const overlayElement = document.querySelector(".overlay");
-  overlayElement.classList.add("overlay__visible");
-}
-
-function closeOverlay() {
-  const overlayElement = document.querySelector(".overlay");
-  overlayElement.classList.remove("overlay__visible");
-}
-
-function handleEscClose(evt) {
-  if (evt.key === "Escape") {
-    closeOverlay();
-  }
-}
-
-/* inicia codigo del formulario */
-
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-
-  const nameInput = document.querySelector("input[name='name-input']");
-  const jobInput = document.querySelector("input[name='job-input']");
-
-  const nameElement = document.querySelector(".profile__title");
-  const jobElement = document.querySelector(".profile__description");
-
-  nameElement.textContent = nameInput.value;
-  jobElement.textContent = jobInput.value;
-
-  closeOverlay();
-}
-
-formElement.addEventListener("submit", handleProfileFormSubmit);
-closeButton.addEventListener("click", closeOverlay);
-editButton.addEventListener("click", openOverlay);
-document.addEventListener("keydown", handleEscClose);
-
-/* inicia codigo de la galeria */
-
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -69,9 +25,102 @@ const initialCards = [
   },
 ];
 
+function openOverlay(id) {
+  const overlayElement = document.querySelector(id);
+  overlayElement.classList.add("overlay__visible");
+}
+
+// cerrar formulario editar perfil
+function closeOverlay(id) {
+  const overlayElement = document.querySelector(id);
+  overlayElement.classList.remove("overlay__visible");
+}
+
+// abrir formulario editar perfil
+function openProfileEditOverlay() {
+  openOverlay("#overlay__profile-edit");
+}
+
+// abrir formulario agregar nueva imagen
+function openImageAddOverlay() {
+  openOverlay("#overlay__card-add");
+}
+
+// abrir formulario editar perfil
+function closeProfileEditOverlay() {
+  closeOverlay("#overlay__profile-edit");
+}
+
+// abrir formulario agregar nueva imagen
+function closeImageAddOverlay() {
+  closeOverlay("#overlay__card-add");
+}
+
+/* pop-up edit profile */
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+
+  const nameInput = document.querySelector("#name");
+  const jobInput = document.querySelector("#job");
+
+  const nameElement = document.querySelector(".profile__title");
+  const jobElement = document.querySelector(".profile__description");
+
+  nameElement.textContent = nameInput.value;
+  jobElement.textContent = jobInput.value;
+
+  closeProfileEditOverlay();
+}
+
+/* pop-up add new place */
+
+function handleImageFormSubmit(evt) {
+  evt.preventDefault();
+
+  const placeInput = document.querySelector("#place");
+  const imageUrlInput = document.querySelector("#imageURL");
+
+  const newPlace = {
+    name: placeInput.value,
+    link: imageUrlInput.value,
+  };
+
+  initialCards.unshift(newPlace);
+  console.log(initialCards);
+
+  renderGallery();
+
+  closeImageAddOverlay();
+}
+
+const profileForm = document.querySelector("#profileForm");
+profileForm.addEventListener("submit", handleProfileFormSubmit);
+
+const imageForm = document.querySelector("#imageForm");
+imageForm.addEventListener("submit", handleImageFormSubmit);
+
+const closeProfileOverlay = document.querySelector("#closeProfileOverlay");
+closeProfileOverlay.addEventListener("click", closeProfileEditOverlay);
+
+const closeImageOverlay = document.querySelector("#closeImageOverlay");
+closeImageOverlay.addEventListener("click", closeImageAddOverlay);
+
+const editButton = document.querySelector(".profile__button-edit");
+editButton.addEventListener("click", openProfileEditOverlay);
+
+const addButton = document.querySelector(".profile__button-add");
+addButton.addEventListener("click", openImageAddOverlay);
+
+/* codigo de la galeria */
+
 const renderGallery = () => {
   //obtener grid de la galeria
   const grid = document.querySelector(".elements__grid");
+
+  while (grid.firstChild) {
+    grid.firstChild.remove();
+  }
 
   initialCards.forEach((item) => {
     //crea nodo contenedor de la galeria
