@@ -49,7 +49,7 @@ function openImageAddOverlay() {
 
 // abrir formulario imagen preview
 function openImagePreviewOverlay() {
-  openOverlay("#ovaerlayCardPreview");
+  openOverlay("#overlayCardPreview");
 }
 
 // cerrar formulario editar perfil
@@ -106,19 +106,6 @@ function handleImageFormSubmit(evt) {
 
 /* pop-up card preview */
 
-function handleImageCardPreview(evt) {
-  evt.preventDefault();
-
-  const imageInput = document.querySelector("initialCards.name");
-  const captionInput = document.querySelector("initialCards.link");
-
-  const imageElement = document.querySelector("#imagePreview");
-  const captionElement = document.querySelector("#captionOverlay");
-
-  imageElement.src = imageInput.value;
-  captionElement.textContent = captionInput.value;
-}
-
 const profileForm = document.querySelector("#profileForm");
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 
@@ -160,6 +147,16 @@ function renderGallery() {
     const image = document.createElement("img");
     image.className = "element__image";
     image.src = item.link;
+    image.onclick = () => {
+      const imagePreview = document.querySelector(".overlay__preview-image");
+      imagePreview.src = item.link;
+      imagePreview.alt = item.name;
+
+      const imageCaption = document.querySelector(".overlay__preview-caption");
+      imageCaption.textContent = item.name;
+
+      openImagePreviewOverlay();
+    };
     element.appendChild(image);
 
     //crea nodo del elemento title continer

@@ -37,3 +37,8 @@
 @import url(../blocks/overlay/__text-input/overlay__text-input.css);
 @import url(../blocks/overlay/__form-submit-button/overlay__form-submit-button.css);
 @import url(../blocks/overlay/__form-close-button/overlay__form-close-button.css);
+
+@import url(../blocks/overlay/__content-preview/overlay__content-preview.css);
+@import url(../blocks/overlay/__preview-image/overlay__preview-image.css);
+@import url(../blocks/overlay/__figure/overlay__figure.css);
+@import url(../blocks/overlay/__preview-caption/overlay__preview-caption.css);
