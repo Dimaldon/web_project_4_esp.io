@@ -25,12 +25,13 @@ const initialCards = [
   },
 ];
 
+// abrir formulario
 function openOverlay(id) {
   const overlayElement = document.querySelector(id);
   overlayElement.classList.add("overlay__visible");
 }
 
-// cerrar formulario editar perfil
+// cerrar formulario
 function closeOverlay(id) {
   const overlayElement = document.querySelector(id);
   overlayElement.classList.remove("overlay__visible");
@@ -46,14 +47,24 @@ function openImageAddOverlay() {
   openOverlay("#overlay__card-add");
 }
 
-// abrir formulario editar perfil
+// abrir formulario imagen preview
+function openImagePreviewOverlay() {
+  openOverlay("#ovaerlayCardPreview");
+}
+
+// cerrar formulario editar perfil
 function closeProfileEditOverlay() {
   closeOverlay("#overlay__profile-edit");
 }
 
-// abrir formulario agregar nueva imagen
+// cerrar formulario agregar nueva imagen
 function closeImageAddOverlay() {
   closeOverlay("#overlay__card-add");
+}
+
+// cerrar popup imagen preview
+function closePreviewImageOverlay() {
+  closeOverlay("#overlayCardPreview");
 }
 
 /* pop-up edit profile */
@@ -87,11 +98,25 @@ function handleImageFormSubmit(evt) {
   };
 
   initialCards.unshift(newPlace);
-  console.log(initialCards);
 
   renderGallery();
 
   closeImageAddOverlay();
+}
+
+/* pop-up card preview */
+
+function handleImageCardPreview(evt) {
+  evt.preventDefault();
+
+  const imageInput = document.querySelector("initialCards.name");
+  const captionInput = document.querySelector("initialCards.link");
+
+  const imageElement = document.querySelector("#imagePreview");
+  const captionElement = document.querySelector("#captionOverlay");
+
+  imageElement.src = imageInput.value;
+  captionElement.textContent = captionInput.value;
 }
 
 const profileForm = document.querySelector("#profileForm");
@@ -112,9 +137,12 @@ editButton.addEventListener("click", openProfileEditOverlay);
 const addButton = document.querySelector(".profile__button-add");
 addButton.addEventListener("click", openImageAddOverlay);
 
+const closePreviewOverlay = document.querySelector("#closePreviewOverlay");
+closePreviewOverlay.addEventListener("click", closePreviewImageOverlay);
+
 /* codigo de la galeria */
 
-const renderGallery = () => {
+function renderGallery() {
   //obtener grid de la galeria
   const grid = document.querySelector(".elements__grid");
 
@@ -150,6 +178,6 @@ const renderGallery = () => {
     elementButtonLike.className = "element__button-like";
     elementTitleContainer.appendChild(elementButtonLike);
   });
-};
+}
 
 renderGallery();
