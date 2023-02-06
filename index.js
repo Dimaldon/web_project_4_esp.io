@@ -25,7 +25,7 @@ const initialCards = [
   },
 ];
 
-const cardsWithId = initialCards.map((item, index) => {
+let cardsWithId = initialCards.map((item, index) => {
   return {
     ...item,
     id: Date.now() + index,
@@ -81,6 +81,15 @@ function handleLikeButtonClick(id) {
     return id === item.id;
   });
   cardFound.liked = !cardFound.liked;
+  renderGallery();
+}
+
+function handleDeleteButtonClick(id) {
+  const newCardsWithId = cardsWithId.filter((item) => {
+    return id !== item.id;
+  });
+  cardsWithId = newCardsWithId;
+
   renderGallery();
 }
 
@@ -177,20 +186,29 @@ function renderGallery() {
     };
     element.appendChild(image);
 
+    //crea bote de basura
+
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "element__delete-button";
+    deleteButton.textContent = "Delete";
+    deleteButton.onclick = () => {
+      handleDeleteButtonClick(item.id);
+    };
+    element.appendChild(deleteButton);
+
     //crea nodo del elemento title continer
     const elementTitleContainer = document.createElement("div");
     elementTitleContainer.className = "element__title-container";
     element.appendChild(elementTitleContainer);
 
-    //crea nodo del elemnto title
+    //crea nodo del elemento title
     const elementTitle = document.createElement("h2");
     elementTitle.className = "element__title";
     elementTitle.textContent = item.name;
     elementTitleContainer.appendChild(elementTitle);
 
-    //crear nodo del elemenot button
+    //crear nodo del elemento button
     const elementButtonLike = document.createElement("button");
-    // elementButtonLike.className = "element__button-like";
     elementButtonLike.className =
       item.liked === true
         ? "element__button-like element__button-like-active"
