@@ -23,6 +23,7 @@
 @import url(../blocks/content/elements/__title-container/element__title-container.css);
 @import url(../blocks/content/elements/__title/element__title.css);
 @import url(../blocks/content/elements/__button-like/__button-like.css);
+@import url(../blocks/content/elements/__button-like-active/element__button-like-active.css);
 @import url(../blocks/content/profile/__title-grup/profile__title-grup.css);
 
 @import url(../blocks/footer/footer.css);

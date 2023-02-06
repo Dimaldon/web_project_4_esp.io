@@ -25,6 +25,14 @@ const initialCards = [
   },
 ];
 
+const cardsWithId = initialCards.map((item, index) => {
+  return {
+    ...item,
+    id: Date.now() + index,
+    liked: false,
+  };
+});
+
 // abrir formulario
 function openOverlay(id) {
   const overlayElement = document.querySelector(id);
@@ -67,6 +75,15 @@ function closePreviewImageOverlay() {
   closeOverlay("#overlayCardPreview");
 }
 
+//hande
+function handleLikeButtonClick(id) {
+  const cardFound = cardsWithId.find((item) => {
+    return id === item.id;
+  });
+  cardFound.liked = !cardFound.liked;
+  renderGallery();
+}
+
 /* pop-up edit profile */
 
 function handleProfileFormSubmit(evt) {
@@ -95,9 +112,10 @@ function handleImageFormSubmit(evt) {
   const newPlace = {
     name: placeInput.value,
     link: imageUrlInput.value,
+    id: Date.now(),
   };
 
-  initialCards.unshift(newPlace);
+  cardsWithId.unshift(newPlace);
 
   renderGallery();
 
@@ -137,7 +155,7 @@ function renderGallery() {
     grid.firstChild.remove();
   }
 
-  initialCards.forEach((item) => {
+  cardsWithId.forEach((item) => {
     //crea nodo contenedor de la galeria
     const element = document.createElement("div");
     element.className = "element";
@@ -172,7 +190,14 @@ function renderGallery() {
 
     //crear nodo del elemenot button
     const elementButtonLike = document.createElement("button");
-    elementButtonLike.className = "element__button-like";
+    // elementButtonLike.className = "element__button-like";
+    elementButtonLike.className =
+      item.liked === true
+        ? "element__button-like element__button-like-active"
+        : "element__button-like";
+    elementButtonLike.onclick = () => {
+      handleLikeButtonClick(item.id);
+    };
     elementTitleContainer.appendChild(elementButtonLike);
   });
 }
