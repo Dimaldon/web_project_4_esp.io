@@ -1,8 +1,8 @@
-# Proyecto 4 "Alrededor de los EE.UU."
+# Proyecto 5 "Alrededor de los EE.UU."
 
 ## Descripción del proyecto:
 
-El presente proyecto pretende crear un sitio web de una sola página que se adapte a dispositivos móviles y desktops, donde integramos por primera ocasión JavaScript y los conocimientos adquiridos durante el sprint 1, 2, 3 y 4 del bootcamp de Practicum.
+El presente proyecto pretende crear un sitio web de una sola página que se adapte a dispositivos móviles y desktops, para el proyecto 5 permite colocar tu nombre y ocupación a travez de un formulario emergente "Pop-Up".
 
 ## Tecnologías utilizadas:
 
@@ -13,8 +13,13 @@ El presente proyecto pretende crear un sitio web de una sola página que se adap
 - Estructuras y rutas de archivos
 - Git
 - Animación y transformación con CSS
+- Diseño responsivo
 - JavaScript
 - Debugging
+
+Herramientas Extra
+
+- Figma
 
 ## Planes para finalizar el proyecto:
 
@@ -22,4 +27,4 @@ Intentar integrar más acciones con JavaScript.
 
 ## Link del proyecto en git:
 
-[Proyecto 4 Alrededor de los EE.UU.](https://dimaldon.github.io/web_project_4_esp.io/)
+[Proyecto 5 Alrededor de los EE.UU.](https://dimaldon.github.io/web_project_4_esp.io/)
