@@ -75,7 +75,7 @@ function closePreviewImageOverlay() {
   closeOverlay("#overlayCardPreview");
 }
 
-//hande
+// encuentra tarjeta activa
 function handleLikeButtonClick(id) {
   const cardFound = cardsWithId.find((item) => {
     return id === item.id;
@@ -84,6 +84,7 @@ function handleLikeButtonClick(id) {
   renderGallery();
 }
 
+// manejador para eliminar tarjeta
 function handleDeleteButtonClick(id) {
   const newCardsWithId = cardsWithId.filter((item) => {
     return id !== item.id;
@@ -190,7 +191,6 @@ function renderGallery() {
 
     const deleteButton = document.createElement("button");
     deleteButton.className = "element__delete-button";
-    deleteButton.textContent = "Delete";
     deleteButton.onclick = () => {
       handleDeleteButtonClick(item.id);
     };

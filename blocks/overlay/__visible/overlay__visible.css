@@ -1,3 +1,6 @@
 .overlay__visible {
   display: flex;
+
+  visibility: visible;
+  opacity: 1;
 }
