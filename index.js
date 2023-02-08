@@ -188,7 +188,6 @@ function renderGallery() {
     element.appendChild(image);
 
     //crea bote de basura
-
     const deleteButton = document.createElement("button");
     deleteButton.className = "element__delete-button";
     deleteButton.onclick = () => {
