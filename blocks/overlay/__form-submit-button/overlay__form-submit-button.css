@@ -20,6 +20,10 @@
   opacity: 0.8;
 }
 
+.overlay__form-submit-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
 @media screen and (max-width: 1279px) {
   .overlay__form-submit-button {
     width: 238px;

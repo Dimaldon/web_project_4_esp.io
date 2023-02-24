@@ -46,7 +46,7 @@
 
     <section class="overlay" id="overlay__profile-edit">
       <div class="overlay__content">
-        <form class="overlay__form" id="profileForm">
+        <form class="overlay__form" id="profileForm" novalidate>
           <h2 class="overlay__title">Edit profile</h2>
           <div class="overlay__form-input-grup">
             <input
@@ -56,8 +56,13 @@
               id="name"
               value="Jacques Cousteau"
               placeholder="Escribe el nombre"
+              required
+              minlength="2"
+              maxlength="40"
             />
           </div>
+          <span class="form__input-error name-error"></span>
+
           <div class="overlay__form-input-grup">
             <input
               class="overlay__text-input"
@@ -66,8 +71,12 @@
               id="job"
               value="Explorador"
               placeholder="Escribe la ocupación"
+              required
+              minlength="2"
+              maxlength="200"
             />
           </div>
+          <span class="form__input-error job-error"></span>
 
           <button class="overlay__form-submit-button" type="submit">
             Guardar
@@ -84,7 +93,7 @@
 
     <section class="overlay" id="overlay__card-add">
       <div class="overlay__content">
-        <form class="overlay__form" id="imageForm">
+        <form class="overlay__form" id="imageForm" novalidate>
           <h2 class="overlay__title">Nuevo lugar</h2>
           <div class="overlay__form-input-grup">
             <input
@@ -93,17 +102,24 @@
               name="place"
               id="place"
               placeholder="Título"
+              required
+              minlength="2"
+              maxlength="30"
             />
           </div>
+          <span class="form__input-error place-error"></span>
+
           <div class="overlay__form-input-grup">
             <input
               class="overlay__text-input"
-              type="text"
+              type="url"
               name="imageURL"
               id="imageURL"
               placeholder="Enlace a la imagen"
+              required
             />
           </div>
+          <span class="form__input-error imageURL-error"></span>
 
           <button class="overlay__form-submit-button" type="submit">
             Crear
@@ -132,5 +148,6 @@
     </section>
 
     <script src="index.js"></script>
+    <script src="validate.js"></script>
   </body>
 </html>

@@ -152,8 +152,30 @@ editButton.addEventListener("click", openProfileEditOverlay);
 const addButton = document.querySelector(".profile__button-add");
 addButton.addEventListener("click", openImageAddOverlay);
 
-const closePreviewOverlay = document.querySelector("#closePreviewOverlay");
+const closePreviewOverlay = document.querySelector("#closePreviewOverlay ");
 closePreviewOverlay.addEventListener("click", closePreviewImageOverlay);
+
+const overlays = document.querySelectorAll(".overlay");
+overlays.forEach((item) => {
+  item.addEventListener("click", (event) => {
+    if (event.target !== item) {
+      return;
+    }
+    closeOverlay("#overlay__profile-edit");
+    closeOverlay("#overlay__card-add");
+    closeOverlay("#overlayCardPreview");
+  });
+});
+
+/* cierre con tecla escape */
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeOverlay("#overlay__profile-edit");
+    closeOverlay("#overlay__card-add");
+    closeOverlay("#overlayCardPreview");
+  }
+});
 
 /* codigo de la galeria */
 
