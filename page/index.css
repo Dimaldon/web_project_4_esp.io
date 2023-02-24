@@ -41,8 +41,8 @@
 @import url(../blocks/overlay/__form-close-button/overlay__form-close-button.css);
 @import url(../blocks/overlay/__input_type_error/form__input_type_error.css);
 @import url(../blocks/overlay/__input-error_active/form__input-error_active.css);
-@import url(../blocks/overlay/__form-button-disabled/form__button_disabled.css);
-@import url(../blocks/overlay/__input-error/form__input-error.css);
+@import url(../blocks/overlay/__form-button-disabled/form__button-disabled.css);
+@import url(../blocks/overlay/__form-input-error/overlay__form-input-error.css);
 
 @import url(../blocks/overlay/__content-preview/overlay__content-preview.css);
 @import url(../blocks/overlay/__preview-image/overlay__preview-image.css);
