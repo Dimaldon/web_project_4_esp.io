@@ -99,8 +99,8 @@ function handleDeleteButtonClick(id) {
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
-  const nameInput = document.querySelector("#name");
-  const jobInput = document.querySelector("#job");
+  const nameInput = document.querySelector("#overlay__form-name");
+  const jobInput = document.querySelector("#overlay__form-job");
 
   const nameElement = document.querySelector(".profile__title");
   const jobElement = document.querySelector(".profile__description");
@@ -116,8 +116,8 @@ function handleProfileFormSubmit(evt) {
 function handleImageFormSubmit(evt) {
   evt.preventDefault();
 
-  const placeInput = document.querySelector("#place");
-  const imageUrlInput = document.querySelector("#imageURL");
+  const placeInput = document.querySelector("#overlay__form-place");
+  const imageUrlInput = document.querySelector("#overlay__form-imageURL");
 
   const newPlace = {
     name: placeInput.value,
