@@ -25,14 +25,6 @@ const initialCards = [
   },
 ];
 
-let cardsWithId = initialCards.map((item, index) => {
-  return {
-    ...item,
-    id: Date.now() + index,
-    liked: false,
-  };
-});
-
 // abrir formulario
 function openOverlay(id) {
   const overlayElement = document.querySelector(id);
@@ -77,21 +69,16 @@ function closePreviewImageOverlay() {
 
 // encuentra tarjeta activa
 function handleLikeButtonClick(id) {
-  const cardFound = cardsWithId.find((item) => {
-    return id === item.id;
-  });
-  cardFound.liked = !cardFound.liked;
-  renderGallery();
+  const card = document.getElementById(id);
+  const button = card.querySelector(".element__button-like");
+  button.classList.toggle("element__button-like-active");
 }
 
 // manejador para eliminar tarjeta
 function handleDeleteButtonClick(id) {
-  const newCardsWithId = cardsWithId.filter((item) => {
-    return id !== item.id;
-  });
-  cardsWithId = newCardsWithId;
-
-  renderGallery();
+  const grid = document.querySelector(".elements__grid");
+  const card = document.getElementById(id);
+  grid.removeChild(card);
 }
 
 /* pop-up edit profile */
@@ -118,16 +105,15 @@ function handleImageFormSubmit(evt) {
 
   const placeInput = document.querySelector("#overlay__form-place");
   const imageUrlInput = document.querySelector("#overlay__form-imageURL");
+  const grid = document.querySelector(".elements__grid");
 
   const newPlace = {
     name: placeInput.value,
     link: imageUrlInput.value,
-    id: Date.now(),
   };
 
-  cardsWithId.unshift(newPlace);
-
-  renderGallery();
+  const card = createCard(newPlace);
+  grid.prepend(card);
 
   closeImageAddOverlay();
 }
@@ -177,67 +163,69 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+const createCard = (item) => {
+  const randomId = Math.random();
+  //crea nodo contenedor de la galeria
+  const element = document.createElement("div");
+  element.className = "element";
+  element.id = randomId;
+
+  //crea nodo del elemento de imagen
+  const image = document.createElement("img");
+  image.className = "element__image";
+  image.src = item.link;
+  image.onclick = () => {
+    const imagePreview = document.querySelector(".overlay__preview-image");
+    imagePreview.src = item.link;
+    imagePreview.alt = item.name;
+
+    const imageCaption = document.querySelector(".overlay__preview-caption");
+    imageCaption.textContent = item.name;
+
+    openImagePreviewOverlay();
+  };
+  element.appendChild(image);
+
+  //crea bote de basura
+  const deleteButton = document.createElement("button");
+  deleteButton.className = "element__delete-button";
+  deleteButton.onclick = () => {
+    handleDeleteButtonClick(randomId);
+  };
+  element.appendChild(deleteButton);
+
+  //crea nodo del elemento title continer
+  const elementTitleContainer = document.createElement("div");
+  elementTitleContainer.className = "element__title-container";
+  element.appendChild(elementTitleContainer);
+
+  //crea nodo del elemento title
+  const elementTitle = document.createElement("h2");
+  elementTitle.className = "element__title";
+  elementTitle.textContent = item.name;
+  elementTitleContainer.appendChild(elementTitle);
+
+  //crear nodo del elemento button
+  const elementButtonLike = document.createElement("button");
+  elementButtonLike.className = "element__button-like";
+  elementButtonLike.onclick = () => {
+    handleLikeButtonClick(randomId);
+  };
+
+  elementTitleContainer.appendChild(elementButtonLike);
+
+  return element;
+};
+
 /* codigo de la galeria */
 
 function renderGallery() {
   //obtener grid de la galeria
   const grid = document.querySelector(".elements__grid");
 
-  while (grid.firstChild) {
-    grid.firstChild.remove();
-  }
-
-  cardsWithId.forEach((item) => {
-    //crea nodo contenedor de la galeria
-    const element = document.createElement("div");
-    element.className = "element";
-    grid.appendChild(element);
-
-    //crea nodo del elemento de imagen
-    const image = document.createElement("img");
-    image.className = "element__image";
-    image.src = item.link;
-    image.onclick = () => {
-      const imagePreview = document.querySelector(".overlay__preview-image");
-      imagePreview.src = item.link;
-      imagePreview.alt = item.name;
-
-      const imageCaption = document.querySelector(".overlay__preview-caption");
-      imageCaption.textContent = item.name;
-
-      openImagePreviewOverlay();
-    };
-    element.appendChild(image);
-
-    //crea bote de basura
-    const deleteButton = document.createElement("button");
-    deleteButton.className = "element__delete-button";
-    deleteButton.onclick = () => {
-      handleDeleteButtonClick(item.id);
-    };
-    element.appendChild(deleteButton);
-
-    //crea nodo del elemento title continer
-    const elementTitleContainer = document.createElement("div");
-    elementTitleContainer.className = "element__title-container";
-    element.appendChild(elementTitleContainer);
-
-    //crea nodo del elemento title
-    const elementTitle = document.createElement("h2");
-    elementTitle.className = "element__title";
-    elementTitle.textContent = item.name;
-    elementTitleContainer.appendChild(elementTitle);
-
-    //crear nodo del elemento button
-    const elementButtonLike = document.createElement("button");
-    elementButtonLike.className =
-      item.liked === true
-        ? "element__button-like element__button-like-active"
-        : "element__button-like";
-    elementButtonLike.onclick = () => {
-      handleLikeButtonClick(item.id);
-    };
-    elementTitleContainer.appendChild(elementButtonLike);
+  initialCards.forEach((item) => {
+    const card = createCard(item);
+    grid.appendChild(card);
   });
 }
 
