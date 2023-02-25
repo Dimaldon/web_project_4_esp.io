@@ -155,13 +155,15 @@ overlays.forEach((item) => {
 
 /* cierre con tecla escape */
 
-document.addEventListener("keydown", (event) => {
+const keydownListener = (event) => {
   if (event.key === "Escape") {
     closeOverlay("#overlay__profile-edit");
     closeOverlay("#overlay__card-add");
     closeOverlay("#overlayCardPreview");
   }
-});
+};
+
+document.addEventListener("keydown", keydownListener);
 
 const createCard = (item) => {
   const randomId = Math.random();
