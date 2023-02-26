@@ -76,7 +76,7 @@ function handleLikeButtonClick(id) {
 
 // manejador para eliminar tarjeta
 function handleDeleteButtonClick(id) {
-  const grid = document.querySelector(".content__elements__grid");
+  const grid = document.querySelector(".content__elements-grid");
   const card = document.getElementById(id);
   grid.removeChild(card);
 }
@@ -105,7 +105,7 @@ function handleImageFormSubmit(evt) {
 
   const placeInput = document.querySelector("#overlay__form-place");
   const imageUrlInput = document.querySelector("#overlay__form-imageURL");
-  const grid = document.querySelector(".content__elements__grid");
+  const grid = document.querySelector(".content__elements-grid");
 
   const newPlace = {
     name: placeInput.value,
@@ -223,7 +223,7 @@ const createCard = (item) => {
 
 function renderGallery() {
   //obtener grid de la galeria
-  const grid = document.querySelector(".content__elements__grid");
+  const grid = document.querySelector(".content__elements-grid");
 
   initialCards.forEach((item) => {
     const card = createCard(item);
