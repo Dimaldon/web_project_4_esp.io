@@ -1,10 +1,10 @@
-.elements__grid {
+.content__elements__grid {
   display: grid;
   row-gap: 20px;
 }
 
 @media screen and (min-width: 1280px) {
-  .elements__grid {
+  .content__elements__grid {
     width: 880px;
     grid-template-columns: 1fr 1fr 1fr;
     margin: 0 auto;
