@@ -1,4 +1,4 @@
-.profile__button-add {
+.content__profile-button-add {
   width: 17.625rem;
   height: 3.125rem;
   background-color: transparent;
@@ -9,12 +9,12 @@
   cursor: pointer;
 }
 
-.profile__button-add:hover {
+.content__profile-button-add:hover {
   opacity: 60%;
 }
 
-@media screen and (min-width: 1280px) {
-  .profile__button-add {
+@media screen and (min-width: 940px) {
+  .content__profile-button-add {
     width: 9.37rem;
     height: 3.12rem;
   }

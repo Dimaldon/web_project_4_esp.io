@@ -1,4 +1,4 @@
-.profile__description {
+.content__profile-description {
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -11,8 +11,8 @@
   padding-bottom: 2.25rem;
 }
 
-@media screen and (min-width: 1280px) {
-  .profile__description {
+@media screen and (min-width: 940px) {
+  .content__profile-description {
     text-align: left;
   }
 }
