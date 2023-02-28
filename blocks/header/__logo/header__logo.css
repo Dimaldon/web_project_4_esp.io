@@ -5,7 +5,7 @@
   padding-bottom: 2rem;
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 940px) {
   .header__logo {
     width: 10.81rem;
     padding-left: 12.5rem;

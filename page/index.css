@@ -9,23 +9,23 @@
 @import url(../blocks/content/content.css);
 
 @import url(../blocks/content/profile/profile.css);
-@import url(../blocks/content/profile/__image/profile__image.css);
-@import url(../blocks/content/profile/__title/profile__title.css);
-@import url(../blocks/content/profile/__description/profile__description.css);
-@import url(../blocks/content/profile/__button-edit/profile__button-edit.css);
-@import url(../blocks/content/profile/__title-container/profile__title-container.css);
-@import url(../blocks/content/profile/__button-add/profile__button-add.css);
+@import url(../blocks/content/profile/__profile-description/content__profile-description.css);
+@import url(../blocks/content/profile/__profile-title/content__profile-title.css);
+@import url(../blocks/content/profile/__profile-image/content__profile-image.css);
+@import url(../blocks/content/profile/__profile-title-container/content__profile-title-container.css);
+@import url(../blocks/content/profile/__profile-button-add/content__profile-button-add.css);
+@import url(../blocks/content/profile/__profile-title-grup/content__profile-title-grup.css);
+@import url(../blocks/content/profile/__profile-button-edit/content__profile-button-edit.css);
 
 @import url(../blocks/content/elements/elements.css);
 @import url(../blocks/content/elements/__elements-grid/content__elements-grid.css);
-@import url(../blocks/content/elements/element/element.css);
-@import url(../blocks/content/elements/__image/element__image.css);
-@import url(../blocks/content/elements/__title-container/element__title-container.css);
-@import url(../blocks/content/elements/__title/element__title.css);
-@import url(../blocks/content/elements/__button-like/__button-like.css);
-@import url(../blocks/content/elements/__button-like-active/element__button-like-active.css);
-@import url(../blocks/content/elements/__delete-button/element__delete-button.css);
-@import url(../blocks/content/profile/__title-grup/profile__title-grup.css);
+@import url(../blocks/content/elements/__elements-card/content__elements-card.css);
+@import url(../blocks/content/elements/__elements-image/content__elements-image.css);
+@import url(../blocks/content/elements/__elements-title-container/conent__elements-title-container.css);
+@import url(../blocks/content/elements/__elements-title/content__elements-title.css);
+@import url(../blocks/content/elements/__elements__button-like/content__elements__button-like.css);
+@import url(../blocks/content/elements/__elements__button-like-active/content__elements__button-like-active.css);
+@import url(../blocks/content/elements/__elements__delete-button/content__elements__delete-button.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);

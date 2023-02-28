@@ -70,8 +70,8 @@ function closePreviewImageOverlay() {
 // encuentra tarjeta activa
 function handleLikeButtonClick(id) {
   const card = document.getElementById(id);
-  const button = card.querySelector(".element__button-like");
-  button.classList.toggle("element__button-like-active");
+  const button = card.querySelector(".content__elements__button-like");
+  button.classList.toggle("content__elements__button-like-active");
 }
 
 // manejador para eliminar tarjeta
@@ -89,8 +89,8 @@ function handleProfileFormSubmit(evt) {
   const nameInput = document.querySelector("#overlay__form-name");
   const jobInput = document.querySelector("#overlay__form-job");
 
-  const nameElement = document.querySelector(".profile__title");
-  const jobElement = document.querySelector(".profile__description");
+  const nameElement = document.querySelector(".content__profile-title");
+  const jobElement = document.querySelector(".content__profile-description");
 
   nameElement.textContent = nameInput.value;
   jobElement.textContent = jobInput.value;
@@ -132,10 +132,10 @@ closeProfileOverlay.addEventListener("click", closeProfileEditOverlay);
 const closeImageOverlay = document.querySelector("#closeImageOverlay");
 closeImageOverlay.addEventListener("click", closeImageAddOverlay);
 
-const editButton = document.querySelector(".profile__button-edit");
+const editButton = document.querySelector(".content__profile-button-edit");
 editButton.addEventListener("click", openProfileEditOverlay);
 
-const addButton = document.querySelector(".profile__button-add");
+const addButton = document.querySelector(".content__profile-button-add");
 addButton.addEventListener("click", openImageAddOverlay);
 
 const closePreviewOverlay = document.querySelector("#closePreviewOverlay ");
@@ -169,12 +169,12 @@ const createCard = (item) => {
   const randomId = Math.random();
   //crea nodo contenedor de la galeria
   const element = document.createElement("div");
-  element.className = "element";
+  element.className = "content__elements-card";
   element.id = randomId;
 
   //crea nodo del elemento de imagen
   const image = document.createElement("img");
-  image.className = "element__image";
+  image.className = "content__elements-image";
   image.src = item.link;
   image.onclick = () => {
     const imagePreview = document.querySelector(".overlay__preview-image");
@@ -190,7 +190,7 @@ const createCard = (item) => {
 
   //crea bote de basura
   const deleteButton = document.createElement("button");
-  deleteButton.className = "element__delete-button";
+  deleteButton.className = "content__elements__delete-button";
   deleteButton.onclick = () => {
     handleDeleteButtonClick(randomId);
   };
@@ -198,18 +198,18 @@ const createCard = (item) => {
 
   //crea nodo del elemento title continer
   const elementTitleContainer = document.createElement("div");
-  elementTitleContainer.className = "element__title-container";
+  elementTitleContainer.className = "conent__elements-title-container";
   element.appendChild(elementTitleContainer);
 
   //crea nodo del elemento title
   const elementTitle = document.createElement("h2");
-  elementTitle.className = "element__title";
+  elementTitle.className = "content__elements-title";
   elementTitle.textContent = item.name;
   elementTitleContainer.appendChild(elementTitle);
 
   //crear nodo del elemento button
   const elementButtonLike = document.createElement("button");
-  elementButtonLike.className = "element__button-like";
+  elementButtonLike.className = "content__elements__button-like";
   elementButtonLike.onclick = () => {
     handleLikeButtonClick(randomId);
   };

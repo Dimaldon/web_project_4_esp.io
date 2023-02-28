@@ -5,7 +5,9 @@
   padding-top: 1.75rem;
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 940px) {
   .header {
+    width: 880px;
+    margin: 0 auto;
   }
-}
+} */

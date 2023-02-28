@@ -1,4 +1,4 @@
-.element__button-like {
+.content__elements__button-like {
   width: 27px;
   height: 19px;
   background-color: transparent;
@@ -9,6 +9,6 @@
   border: none;
 }
 
-.element__button-like:hover {
+.content__elements__button-like:hover {
   opacity: 0.5;
 }
