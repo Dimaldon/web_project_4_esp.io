@@ -25,55 +25,6 @@ const initialCards = [
   },
 ];
 
-// abrir formulario
-function openOverlay(id) {
-  const overlayElement = document.querySelector(id);
-  overlayElement.classList.add("overlay__visible");
-}
-
-// cerrar formulario
-function closeOverlay(id) {
-  const overlayElement = document.querySelector(id);
-  overlayElement.classList.remove("overlay__visible");
-}
-
-// abrir formulario editar perfil
-function openProfileEditOverlay() {
-  openOverlay("#overlay__profile-edit");
-}
-
-// abrir formulario agregar nueva imagen
-function openImageAddOverlay() {
-  openOverlay("#overlay__card-add");
-}
-
-// abrir formulario imagen preview
-function openImagePreviewOverlay() {
-  openOverlay("#overlayCardPreview");
-}
-
-// cerrar formulario editar perfil
-function closeProfileEditOverlay() {
-  closeOverlay("#overlay__profile-edit");
-}
-
-// cerrar formulario agregar nueva imagen
-function closeImageAddOverlay() {
-  closeOverlay("#overlay__card-add");
-}
-
-// cerrar popup imagen preview
-function closePreviewImageOverlay() {
-  closeOverlay("#overlayCardPreview");
-}
-
-// encuentra tarjeta activa
-function handleLikeButtonClick(id) {
-  const card = document.getElementById(id);
-  const button = card.querySelector(".content__elements__button-like");
-  button.classList.toggle("content__elements__button-like-active");
-}
-
 // manejador para eliminar tarjeta
 function handleDeleteButtonClick(id) {
   const grid = document.querySelector(".content__elements-grid");
@@ -81,7 +32,7 @@ function handleDeleteButtonClick(id) {
   grid.removeChild(card);
 }
 
-/* pop-up edit profile */
+// pop-up edit profile
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -95,10 +46,10 @@ function handleProfileFormSubmit(evt) {
   nameElement.textContent = nameInput.value;
   jobElement.textContent = jobInput.value;
 
-  closeProfileEditOverlay();
+  closeOverlay("#overlay__profile-edit");
 }
 
-/* pop-up add new place */
+// pop-up add new place
 
 function handleImageFormSubmit(evt) {
   evt.preventDefault();
@@ -107,18 +58,13 @@ function handleImageFormSubmit(evt) {
   const imageUrlInput = document.querySelector("#overlay__form-imageURL");
   const grid = document.querySelector(".content__elements-grid");
 
-  const newPlace = {
-    name: placeInput.value,
-    link: imageUrlInput.value,
-  };
+  const card = new Card(imageUrlInput.value, placeInput.value);
+  grid.prepend(card.generateCard());
 
-  const card = createCard(newPlace);
-  grid.prepend(card);
-
-  closeImageAddOverlay();
+  closeOverlay("#overlay__card-add");
 }
 
-/* pop-up card preview */
+// pop-up card preview
 
 const profileForm = document.querySelector("#profileForm");
 profileForm.addEventListener("submit", handleProfileFormSubmit);
@@ -127,19 +73,29 @@ const imageForm = document.querySelector("#imageForm");
 imageForm.addEventListener("submit", handleImageFormSubmit);
 
 const closeProfileOverlay = document.querySelector("#closeProfileOverlay");
-closeProfileOverlay.addEventListener("click", closeProfileEditOverlay);
+closeProfileOverlay.addEventListener("click", function () {
+  closeOverlay("#overlay__profile-edit");
+});
 
 const closeImageOverlay = document.querySelector("#closeImageOverlay");
-closeImageOverlay.addEventListener("click", closeImageAddOverlay);
+closeImageOverlay.addEventListener("click", function () {
+  closeOverlay("#overlay__card-add");
+});
 
 const editButton = document.querySelector(".content__profile-button-edit");
-editButton.addEventListener("click", openProfileEditOverlay);
+editButton.addEventListener("click", function () {
+  openOverlay("#overlay__profile-edit");
+});
 
 const addButton = document.querySelector(".content__profile-button-add");
-addButton.addEventListener("click", openImageAddOverlay);
+addButton.addEventListener("click", function () {
+  openOverlay("#overlay__card-add");
+});
 
 const closePreviewOverlay = document.querySelector("#closePreviewOverlay ");
-closePreviewOverlay.addEventListener("click", closePreviewImageOverlay);
+closePreviewOverlay.addEventListener("click", function () {
+  closeOverlay("#overlayCardPreview");
+});
 
 const overlays = document.querySelectorAll(".overlay");
 overlays.forEach((item) => {
@@ -153,7 +109,7 @@ overlays.forEach((item) => {
   });
 });
 
-/* cierre con tecla escape */
+// cierre con tecla escape
 
 const keydownListener = (event) => {
   if (event.key === "Escape") {
@@ -165,69 +121,57 @@ const keydownListener = (event) => {
 
 document.addEventListener("keydown", keydownListener);
 
-const createCard = (item) => {
-  const randomId = Math.random();
-  //crea nodo contenedor de la galeria
-  const element = document.createElement("div");
-  element.className = "content__elements-card";
-  element.id = randomId;
+// templates para las tarjetas
 
-  //crea nodo del elemento de imagen
-  const image = document.createElement("img");
-  image.className = "content__elements-image";
-  image.src = item.link;
-  image.onclick = () => {
-    const imagePreview = document.querySelector(".overlay__preview-image");
-    imagePreview.src = item.link;
-    imagePreview.alt = item.name;
+// const cardTemplate = document.querySelector(".card__template");
 
-    const imageCaption = document.querySelector(".overlay__preview-caption");
-    imageCaption.textContent = item.name;
+// const createCard = (item) => {
+//   const cardItem = cardTemplate.content.cloneNode(true);
+//   const element = cardItem.querySelector(".elements");
+//   const cardImage = element.querySelector(".content__elements-image");
+//   const cardTitle = element.querySelector(".content__elements-title");
+//   const btnLike = element.querySelector(".content__elements__button-like");
+//   const btnDelete = cardItem.querySelector(".content__elements__delete-button");
 
-    openImagePreviewOverlay();
-  };
-  element.appendChild(image);
+//   //asiganción de valores del array a item
 
-  //crea bote de basura
-  const deleteButton = document.createElement("button");
-  deleteButton.className = "content__elements__delete-button";
-  deleteButton.onclick = () => {
-    handleDeleteButtonClick(randomId);
-  };
-  element.appendChild(deleteButton);
+//   cardImage.src = item.link;
+//   cardTitle.textContent = item.name;
 
-  //crea nodo del elemento title continer
-  const elementTitleContainer = document.createElement("div");
-  elementTitleContainer.className = "conent__elements-title-container";
-  element.appendChild(elementTitleContainer);
+// cardImage.onclick = () => {
+//     const imagePreview = document.querySelector(".overlay__preview-image");
+//     imagePreview.src = item.link;
+//     imagePreview.alt = item.name;
+//     const imageCaption = document.querySelector(".overlay__preview-caption");
+//     imageCaption.textContent = item.name;
 
-  //crea nodo del elemento title
-  const elementTitle = document.createElement("h2");
-  elementTitle.className = "content__elements-title";
-  elementTitle.textContent = item.name;
-  elementTitleContainer.appendChild(elementTitle);
+//     openImagePreviewOverlay();
+//   };
 
-  //crear nodo del elemento button
-  const elementButtonLike = document.createElement("button");
-  elementButtonLike.className = "content__elements__button-like";
-  elementButtonLike.onclick = () => {
-    handleLikeButtonClick(randomId);
-  };
+//   btnLike.addEventListener("click", () => {
+//     btnLike.classList.toggle("content__elements__button-like-active");
+//   });
 
-  elementTitleContainer.appendChild(elementButtonLike);
+//   btnDelete.addEventListener("click", () => {
+//     element.remove();
+//   });
 
-  return element;
-};
+//   return element;
+// };
 
-/* codigo de la galeria */
+// codigo de la galeria
 
 function renderGallery() {
   //obtener grid de la galeria
+
   const grid = document.querySelector(".content__elements-grid");
 
+  //crea el grid de la galeria
+
   initialCards.forEach((item) => {
-    const card = createCard(item);
-    grid.appendChild(card);
+    const card = new Card(item.link, item.name);
+
+    grid.append(card.generateCard());
   });
 }
 

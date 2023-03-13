@@ -159,7 +159,21 @@
       </div>
     </section>
 
-    <script src="index.js"></script>
+    <template class="card__template">
+      <div class="elements">
+        <img class="content__elements-image" src="" alt="imagenes-tarjetas" />
+        <button class="content__elements__delete-button"></button>
+        <div class="conent__elements-title-container">
+          <h2 class="content__elements-title"></h2>
+          <button class="content__elements__button-like"></button>
+        </div>
+      </div>
+    </template>
+
+    <script src="utils.js"></script>
+    <script src="Card.js"></script>
+    <script src="FormValidator.js"></script>
     <script src="validate.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
