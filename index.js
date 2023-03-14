@@ -1,3 +1,4 @@
+//variable que almacena el array de objetos con las 6 cards iniciales
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -33,7 +34,6 @@ function handleDeleteButtonClick(id) {
 }
 
 // pop-up edit profile
-
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
@@ -50,7 +50,6 @@ function handleProfileFormSubmit(evt) {
 }
 
 // pop-up add new place
-
 function handleImageFormSubmit(evt) {
   evt.preventDefault();
 
@@ -65,7 +64,6 @@ function handleImageFormSubmit(evt) {
 }
 
 // pop-up card preview
-
 const profileForm = document.querySelector("#profileForm");
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 
@@ -110,7 +108,6 @@ overlays.forEach((item) => {
 });
 
 // cierre con tecla escape
-
 const keydownListener = (event) => {
   if (event.key === "Escape") {
     closeOverlay("#overlay__profile-edit");
@@ -121,56 +118,14 @@ const keydownListener = (event) => {
 
 document.addEventListener("keydown", keydownListener);
 
-// templates para las tarjetas
-
-// const cardTemplate = document.querySelector(".card__template");
-
-// const createCard = (item) => {
-//   const cardItem = cardTemplate.content.cloneNode(true);
-//   const element = cardItem.querySelector(".elements");
-//   const cardImage = element.querySelector(".content__elements-image");
-//   const cardTitle = element.querySelector(".content__elements-title");
-//   const btnLike = element.querySelector(".content__elements__button-like");
-//   const btnDelete = cardItem.querySelector(".content__elements__delete-button");
-
-//   //asiganción de valores del array a item
-
-//   cardImage.src = item.link;
-//   cardTitle.textContent = item.name;
-
-// cardImage.onclick = () => {
-//     const imagePreview = document.querySelector(".overlay__preview-image");
-//     imagePreview.src = item.link;
-//     imagePreview.alt = item.name;
-//     const imageCaption = document.querySelector(".overlay__preview-caption");
-//     imageCaption.textContent = item.name;
-
-//     openImagePreviewOverlay();
-//   };
-
-//   btnLike.addEventListener("click", () => {
-//     btnLike.classList.toggle("content__elements__button-like-active");
-//   });
-
-//   btnDelete.addEventListener("click", () => {
-//     element.remove();
-//   });
-
-//   return element;
-// };
-
 // codigo de la galeria
-
 function renderGallery() {
   //obtener grid de la galeria
-
   const grid = document.querySelector(".content__elements-grid");
-
   //crea el grid de la galeria
-
   initialCards.forEach((item) => {
     const card = new Card(item.link, item.name);
-
+    //agregalo al grid desde el objeto card, llamando al metodo generateCard
     grid.append(card.generateCard());
   });
 }
