@@ -1,8 +1,8 @@
-# Proyecto 6 "Alrededor de los EE.UU."
+# Proyecto 7 "Alrededor de los EE.UU."
 
 ## Descripción del proyecto:
 
-El presente proyecto pretende crear un sitio web de una sola página que se adapte a dispositivos móviles y desktops, para el proyecto 6 permite colocar tu nombre y ocupación a travez de un formulario emergente "Pop-Up", a de más de incluir una validación de los formularios.
+El presente proyecto pretende crear un sitio web de una sola página que se adapte a dispositivos móviles y desktops, para el proyecto 7 se centra en la refactorización y a utilizar clases para reescribir porciones particulares del código.
 
 ## Tecnologías utilizadas:
 
@@ -21,16 +21,13 @@ El presente proyecto pretende crear un sitio web de una sola página que se adap
 - Manejo de eventos
 - Formularios
 - Validación de formularios
+- Programación orientada a objetos
 
 Herramientas Extra
 
 - Figma
 - RunJS
 
-## Planes para finalizar el proyecto:
-
-Intentar incluir más elementos de interacción
-
 ## Link del proyecto en git:
 
-[Proyecto 6 Alrededor de los EE.UU.](https://dimaldon.github.io/web_project_4_esp.io/)
+[Proyecto 7 Alrededor de los EE.UU.](https://dimaldon.github.io/web_project_4_esp.io/)
