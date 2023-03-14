@@ -1,6 +1,7 @@
 .content__elements-grid {
   display: grid;
   row-gap: 20px;
+  justify-content: center;
 }
 
 @media screen and (min-width: 940px) {
