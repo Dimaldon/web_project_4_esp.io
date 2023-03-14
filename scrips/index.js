@@ -1,5 +1,5 @@
 import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+// import FormValidator from "./FormValidator";
 import { openOverlay, closeOverlay } from "./utils.js";
 
 //variable que almacena el array de objetos con las 6 cards iniciales
