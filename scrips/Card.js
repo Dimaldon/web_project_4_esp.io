@@ -1,6 +1,4 @@
-const cardTemplate = document.querySelector(".card__template");
-
-class Card {
+export default class Card {
   constructor(link, name) {
     this.link = link;
     this.name = name;
@@ -34,6 +32,7 @@ class Card {
   }
 
   generateCard() {
+    const cardTemplate = document.querySelector(".card__template");
     this.cardItem = cardTemplate.content.cloneNode(true);
     this.element = this.cardItem.querySelector(".elements");
     this.cardImage = this.element.querySelector(".content__elements-image");
