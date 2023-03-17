@@ -1,6 +1,5 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import { closeOverlay } from "./utils.js";
 
 //variable que almacena el array de objetos con las 6 cards iniciales
 const initialCards = [

@@ -1,5 +1,5 @@
 // abrir formulario
-function openOverlay(id) {
+export function openOverlay(id) {
   const overlayElement = document.querySelector(id);
   overlayElement.classList.add("overlay__visible");
 }
@@ -10,31 +10,42 @@ export function closeOverlay(id) {
   overlayElement.classList.remove("overlay__visible");
 }
 
-const closeProfileOverlay = document.querySelector("#closeProfileOverlay");
-closeProfileOverlay.addEventListener("click", function () {
-  closeOverlay("#overlay__profile-edit");
-});
+// cerrar formulario del perfil
+document
+  .querySelector("#closeProfileOverlay")
+  .addEventListener("click", function () {
+    closeOverlay("#overlay__profile-edit");
+  });
 
-const closeImageOverlay = document.querySelector("#closeImageOverlay");
-closeImageOverlay.addEventListener("click", function () {
-  closeOverlay("#overlay__card-add");
-});
+// cerrar formulario de nuevo lugar
+document
+  .querySelector("#closeImageOverlay")
+  .addEventListener("click", function () {
+    closeOverlay("#overlay__card-add");
+  });
 
-const editButton = document.querySelector(".content__profile-button-edit");
-editButton.addEventListener("click", function () {
-  openOverlay("#overlay__profile-edit");
-});
+// abrir formulario del perfil
+document
+  .querySelector(".content__profile-button-edit")
+  .addEventListener("click", function () {
+    openOverlay("#overlay__profile-edit");
+  });
 
-const addButton = document.querySelector(".content__profile-button-add");
-addButton.addEventListener("click", function () {
-  openOverlay("#overlay__card-add");
-});
+// abrir pop-up de nuevo lugar
+document
+  .querySelector(".content__profile-button-add")
+  .addEventListener("click", function () {
+    openOverlay("#overlay__card-add");
+  });
 
-const closePreviewOverlay = document.querySelector("#closePreviewOverlay ");
-closePreviewOverlay.addEventListener("click", function () {
-  closeOverlay("#overlayCardPreview");
-});
+// cerrar pop-up de nuevo lugar
+document
+  .querySelector("#closePreviewOverlay ")
+  .addEventListener("click", function () {
+    closeOverlay("#overlayCardPreview");
+  });
 
+// cierre con tecla X
 const overlays = document.querySelectorAll(".overlay");
 overlays.forEach((item) => {
   item.addEventListener("click", (event) => {

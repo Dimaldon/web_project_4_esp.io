@@ -1,3 +1,4 @@
+import { openOverlay } from "./utils.js";
 export default class Card {
   constructor(link, name) {
     this.link = link;
