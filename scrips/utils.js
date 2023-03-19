@@ -10,43 +10,48 @@ export function closeOverlay(id) {
   overlayElement.classList.remove("overlay__visible");
 }
 
+function handleOverlay(id) {
+  const overlayElement = document.querySelector(id);
+  overlayElement.classList.toggle("overlay__visible");
+}
+
 // cerrar formulario del perfil
 document
   .querySelector("#closeProfileOverlay")
   .addEventListener("click", function () {
-    closeOverlay("#overlay__profile-edit");
+    handleOverlay("#overlay__profile-edit");
   });
 
 // cerrar formulario de nuevo lugar
 document
   .querySelector("#closeImageOverlay")
   .addEventListener("click", function () {
-    closeOverlay("#overlay__card-add");
+    handleOverlay("#overlay__card-add");
   });
 
 // abrir formulario del perfil
 document
   .querySelector(".content__profile-button-edit")
   .addEventListener("click", function () {
-    openOverlay("#overlay__profile-edit");
+    handleOverlay("#overlay__profile-edit");
   });
 
 // abrir pop-up de nuevo lugar
 document
   .querySelector(".content__profile-button-add")
   .addEventListener("click", function () {
-    openOverlay("#overlay__card-add");
+    handleOverlay("#overlay__card-add");
   });
 
 // cerrar pop-up de nuevo lugar
 document
   .querySelector("#closePreviewOverlay ")
   .addEventListener("click", function () {
-    closeOverlay("#overlayCardPreview");
+    handleOverlay("#overlayCardPreview");
   });
 
 // cierre con tecla X
-const overlays = document.querySelectorAll(".overlay");
+const overlays = document.querySelectorAll(".overlay__form-close-button");
 overlays.forEach((item) => {
   item.addEventListener("click", (event) => {
     if (event.target !== item) {
