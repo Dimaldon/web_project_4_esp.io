@@ -6,13 +6,16 @@
     <meta name="author" content="Dimaldon" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./page/index.css" />
     <title>Alrededor de los EE.UU.</title>
   </head>
 
   <body class="root">
     <header class="header">
-      <img class="header__logo" src="image/logo.svg" alt="logo" />
+      <img
+        class="header__logo"
+        src="<%= require('./images/logo.svg')%>"
+        alt="logo"
+      />
       <div class="header__line"></div>
     </header>
 
@@ -20,7 +23,7 @@
       <section class="profile">
         <img
           class="content__profile-image"
-          src="image/profile-image.jpg"
+          src="<%= require('./images/profile-image.jpg')%>"
           alt="jacques cousteau"
         />
         <div class="content__profile-title-grup">
@@ -169,7 +172,5 @@
         </div>
       </div>
     </template>
-
-    <script type="module" src="./scrips/index.js"></script>
   </body>
 </html>
