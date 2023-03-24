@@ -1,7 +1,7 @@
 import "./index.css";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-
+import { handleOverlay } from "../components/utils";
 //variable que almacena el array de objetos con las 6 cards iniciales
 const initialCards = [
     {
@@ -50,7 +50,7 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   nameElement.textContent = nameInput.value;
   jobElement.textContent = jobInput.value;
-  closeOverlay("#overlay__profile-edit");
+  handleOverlay("#overlay__profile-edit");
 }
 
 // pop-up add new place
@@ -60,7 +60,7 @@ function handleImageFormSubmit(evt) {
   const card = new Card(imageUrlInput.value, placeInput.value);
   grid.prepend(card.generateCard());
 
-  closeOverlay("#overlay__card-add");
+  handleOverlay("#overlay__card-add");
 }
 
 // codigo de la galeria

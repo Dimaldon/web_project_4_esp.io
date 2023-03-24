@@ -1,4 +1,4 @@
-import { openOverlay } from "./utils.js";
+import { handleOverlay } from "./utils.js";
 export default class Card {
   constructor(link, name) {
     this.link = link;
@@ -28,7 +28,7 @@ export default class Card {
       this.imageCaption = document.querySelector(".overlay__preview-caption");
       this.imageCaption.textContent = this.name;
 
-      openOverlay("#overlayCardPreview");
+      handleOverlay("#overlayCardPreview");
     };
   }
 
