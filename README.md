@@ -27,6 +27,7 @@ Herramientas Extra
 
 - Figma
 - RunJS
+- Webpack
 
 ## Link del proyecto en git:
 
