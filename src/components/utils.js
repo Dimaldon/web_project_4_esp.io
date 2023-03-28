@@ -18,10 +18,13 @@ document
   });
 
 // cierre con tecla X
-const overlays = document.querySelectorAll(".overlay__form-close-button");
+const overlays = document.querySelectorAll(".overlay");
 overlays.forEach((item) => {
   item.addEventListener("click", (event) => {
-    if (event.target !== item) {
+    if (
+      event.target !== item &&
+      event.target.className.indexOf("overlay__form-close-button") == -1
+    ) {
       return;
     }
     identificaOverlayAbierto() != null

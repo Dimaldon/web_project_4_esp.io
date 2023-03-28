@@ -1,3 +1,4 @@
+import PopupWithImage from "./PopupWithImage.js";
 import { handleOverlay } from "./utils.js";
 export default class Card {
   constructor(link, name) {
@@ -22,13 +23,9 @@ export default class Card {
       this._deleteCard();
     });
     this.cardImage.onclick = () => {
-      this.imagePreview = document.querySelector(".overlay__preview-image");
-      this.imagePreview.src = this.link;
-      this.imagePreview.alt = this.name;
-      this.imageCaption = document.querySelector(".overlay__preview-caption");
-      this.imageCaption.textContent = this.name;
-
-      handleOverlay("#overlayCardPreview");
+      const overlayCardPreview = document.querySelector("#overlayCardPreview");
+      const popupImage = new PopupWithImage(overlayCardPreview);
+      popupImage.handleOverlay(this.link, this.name);
     };
   }
 
