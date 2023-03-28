@@ -76,10 +76,3 @@ export default class FormValidator {
     this._setEventListeners();
   }
 }
-
-/*
-oValidateInputs={
-    input:".overlay__text-input",
-    button:".overlay__form-submit-button"
-}
-*/
