@@ -1,7 +1,7 @@
-import "./index.css";
-import Card from "../components/Card.js";
-import FormValidator from "../components/FormValidator.js";
-import { handleOverlay } from "../components/utils";
+import "./page/index.css";
+import Card from "./components/Card.js";
+import FormValidator from "./components/FormValidator.js";
+import { handleOverlay } from "./components/utils";
 //variable que almacena el array de objetos con las 6 cards iniciales
 const initialCards = [
     {
