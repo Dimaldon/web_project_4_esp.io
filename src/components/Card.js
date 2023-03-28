@@ -1,5 +1,4 @@
 import PopupWithImage from "./PopupWithImage.js";
-import { handleOverlay } from "./utils.js";
 export default class Card {
   constructor(link, name) {
     this.link = link;

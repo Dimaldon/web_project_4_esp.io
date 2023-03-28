@@ -1,8 +1,8 @@
-# Proyecto 7 "Alrededor de los EE.UU."
+# Proyecto 8 "Alrededor de los EE.UU."
 
 ## Descripción del proyecto:
 
-El presente proyecto pretende crear un sitio web de una sola página que se adapte a dispositivos móviles y desktops, para el proyecto 7 se centra en la refactorización y a utilizar clases para reescribir porciones particulares del código.
+El presente proyecto pretende crear un sitio web de una sola página que se adapte a dispositivos móviles y desktops, para el proyecto 8 se centra en la refactorización y a utilizar clases para reescribir porciones particulares del código.
 
 ## Tecnologías utilizadas:
 
@@ -30,4 +30,4 @@ Herramientas Extra
 
 ## Link del proyecto en git:
 
-[Proyecto 7 Alrededor de los EE.UU.](https://dimaldon.github.io/web_project_4_esp.io/)
+[Proyecto 8 Alrededor de los EE.UU.](https://dimaldon.github.io/web_project_4_esp.io/)
