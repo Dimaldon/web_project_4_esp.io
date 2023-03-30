@@ -4,13 +4,14 @@ class PopupWithForms extends Popup {
   constructor(overlayElement, handleFormSubmit) {
     super(overlayElement);
     this.handleFormSubmit = handleFormSubmit;
+    this.formImputs = overlayElement.querySelectorAll(".overlay__text-input");
+    this.formElement = overlayElement.querySelector(".overlay__form");
   }
 
   _getInputValues() {
-    this.formImputs = this.overlayElement.querySelectorAll(
-      ".overlay__text-input"
-    );
-    this.formElement = this.overlayElement.querySelector(".overlay__form");
+    this.formImputs.map((eInput) => {
+      return eInput.value;
+    });
   }
 
   setEventListeners() {

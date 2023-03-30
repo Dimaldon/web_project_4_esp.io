@@ -20,7 +20,7 @@ export default class Popup {
   setEventListeners() {
     this.overlayElement.addEventListener("click", (event) => {
       if (
-        event.target !== item &&
+        event.target !== this.overlayElement &&
         event.target.className.indexOf("overlay__form-close-button") == -1
       ) {
         return;
