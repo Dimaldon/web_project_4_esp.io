@@ -85,7 +85,7 @@ function renderGallery() {
   api.getInitialCards().then((data) => {
     //crea el grid de la galeria
     data.forEach((item) => {
-      const card = new Card(item.link, item.name);
+      const card = new Card(item.link, item.name, item.likes);
       //agregalo al grid desde el objeto card, llamando al metodo generateCard
       grid.append(card.generateCard());
     });

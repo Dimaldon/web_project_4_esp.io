@@ -160,13 +160,36 @@
       </div>
     </section>
 
+    <!-- pop-up card delete -->
+
+    <section class="overlay" id="overlayCardDelete">
+      <div class="overlay__content">
+        <form
+          class="overlay__form"
+          id="Form
+        CardDelete"
+          novalidate
+        >
+          <h2 class="overlay__title">¿Estás seguro?</h2>
+          <button class="overlay__form-submit-button" type="submit">Sí</button>
+        </form>
+        <button
+          class="overlay__form-close-button"
+          id="closeCardDeleteOverlay"
+        ></button>
+      </div>
+    </section>
+
     <template class="card__template">
       <div class="elements">
         <img class="content__elements-image" src=" " alt="imagenes-tarjetas" />
         <button class="content__elements__delete-button"></button>
         <div class="conent__elements-title-container">
           <h2 class="content__elements-title"></h2>
-          <button class="content__elements__button-like"></button>
+          <div class="content__elements-likes-container">
+            <button class="content__elements__button-like"></button>
+            <span class="content__elements__numbers-like">0</span>
+          </div>
         </div>
       </div>
     </template>

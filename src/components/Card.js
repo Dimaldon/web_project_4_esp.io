@@ -1,8 +1,10 @@
 import PopupWithImage from "./PopupWithImage.js";
+import Popup from "./Popup.js";
 export default class Card {
-  constructor(link, name) {
+  constructor(link, name, likes) {
     this.link = link;
     this.name = name;
+    this.likes = likes;
   }
 
   _handleLike() {
@@ -19,7 +21,10 @@ export default class Card {
     });
 
     this.btnDelete.addEventListener("click", () => {
-      this._deleteCard();
+      // this._deleteCard();
+      const overlayCardDelete = document.querySelector("#overlayCardDelete");
+      const popupDelete = new Popup(overlayCardDelete);
+      popupDelete.handleOverlay();
     });
     this.cardImage.onclick = () => {
       const overlayCardPreview = document.querySelector("#overlayCardPreview");
@@ -34,6 +39,9 @@ export default class Card {
     this.element = this.cardItem.querySelector(".elements");
     this.cardImage = this.element.querySelector(".content__elements-image");
     this.cardTitle = this.element.querySelector(".content__elements-title");
+    this.cardLikes = this.element.querySelector(
+      ".content__elements__numbers-like"
+    );
     this.btnLike = this.element.querySelector(
       ".content__elements__button-like"
     );
@@ -42,6 +50,7 @@ export default class Card {
     );
     this.cardImage.src = this.link;
     this.cardTitle.textContent = this.name;
+    this.cardLikes.textContent = this.likes.length;
     this._setEvents();
     return this.element;
   }
