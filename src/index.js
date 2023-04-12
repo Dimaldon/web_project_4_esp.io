@@ -2,40 +2,40 @@ import "./page/index.css";
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidator.js";
 import { handleOverlay } from "./components/utils";
+import Api from "./components/api";
+import UserInfo from "./components/UserInfo";
 //variable que almacena el array de objetos con las 6 cards iniciales
-const initialCards = [
-    {
-      name: "Valle de Yosemite",
-      link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-    },
-    {
-      name: "Lago Louise",
-      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-    },
-    {
-      name: "Montañas Calvas",
-      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-    },
-    {
-      name: "Latemar",
-      link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-    },
-    {
-      name: "Parque Nacional de la Vanoise",
-      link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-    },
-    {
-      name: "Lago di Braies",
-      link: "https://code.s3.yandex.net/web-code/lago.jpg",
-    },
-  ],
-  nameInput = document.querySelector("#overlay__form-name"),
+const nameInput = document.querySelector("#overlay__form-name"),
   jobInput = document.querySelector("#overlay__form-job"),
   nameElement = document.querySelector(".content__profile-title"),
   jobElement = document.querySelector(".content__profile-description"),
   placeInput = document.querySelector("#overlay__form-place"),
   imageUrlInput = document.querySelector("#overlay__form-imageURL"),
-  grid = document.querySelector(".content__elements-grid");
+  grid = document.querySelector(".content__elements-grid"),
+  imagenElement = document.querySelector(".content__profile-image"),
+  api = new Api({
+    baseUrl: "https://around.nomoreparties.co/v1/web_es_cohort_03",
+    headers: {
+      authorization: "361c2497-73b4-4dd1-9a02-2225ff5963b5",
+      "Content-Type": "application/json",
+    },
+  });
+
+api.getInitialUserMe().then((data) => {
+  const name = data.name;
+  const job = data.about;
+  const imagen = data.avatar;
+  const cUserInfo = new UserInfo({
+    nameElement,
+    jobElement,
+    imagenElement,
+    name,
+    job,
+    imagen,
+  });
+  cUserInfo.setUserInfo(cUserInfo.getUserInfo());
+});
+
 // pop-up card preview
 document
   .querySelector("#profileForm")
@@ -48,30 +48,47 @@ document
 // pop-up edit profile
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  nameElement.textContent = nameInput.value;
-  jobElement.textContent = jobInput.value;
-  handleOverlay("#overlay__profile-edit");
+  api.patchInitialUserMe(nameInput.value, jobInput.value).then((data) => {
+    const name = data.name;
+    const job = data.about;
+    const imagen = data.avatar;
+    const cUserInfo = new UserInfo({
+      nameElement,
+      jobElement,
+      imagenElement,
+      name,
+      job,
+      imagen,
+    });
+    cUserInfo.setUserInfo(cUserInfo.getUserInfo());
+    handleOverlay("#overlay__profile-edit");
+  });
+  // nameElement.textContent = nameInput.value;
+  // jobElement.textContent = jobInput.value;
 }
 
 // pop-up add new place
 function handleImageFormSubmit(evt) {
   evt.preventDefault();
+  api.postNewCard(placeInput.value, imageUrlInput.value).then((data) => {
+    const card = new Card(data.link, data.name);
+    grid.prepend(card.generateCard());
 
-  const card = new Card(imageUrlInput.value, placeInput.value);
-  grid.prepend(card.generateCard());
-
-  handleOverlay("#overlay__card-add");
+    handleOverlay("#overlay__card-add");
+  });
 }
 
 // codigo de la galeria
 function renderGallery() {
   //obtener grid de la galeria
   const grid = document.querySelector(".content__elements-grid");
-  //crea el grid de la galeria
-  initialCards.forEach((item) => {
-    const card = new Card(item.link, item.name);
-    //agregalo al grid desde el objeto card, llamando al metodo generateCard
-    grid.append(card.generateCard());
+  api.getInitialCards().then((data) => {
+    //crea el grid de la galeria
+    data.forEach((item) => {
+      const card = new Card(item.link, item.name);
+      //agregalo al grid desde el objeto card, llamando al metodo generateCard
+      grid.append(card.generateCard());
+    });
   });
   enableValidation();
 }
