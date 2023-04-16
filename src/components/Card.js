@@ -1,14 +1,29 @@
 import PopupWithImage from "./PopupWithImage.js";
 import Popup from "./Popup.js";
 export default class Card {
-  constructor(link, name, likes) {
-    this.link = link;
-    this.name = name;
-    this.likes = likes;
+  constructor(
+    cardData,
+    myCard,
+    handleDeleteClick,
+    handleLikeAdd,
+    handleLikeDelete
+  ) {
+    this.cardData = cardData;
+    this.link = cardData.link;
+    this.name = cardData.name;
+    this.likes = cardData.likes;
+    this.myCard = myCard;
+    this.handleDeleteClick = handleDeleteClick;
+    this.handleLikeAdd = handleLikeAdd;
+    this.handleLikeDelete = handleLikeDelete;
   }
 
-  _handleLike() {
-    this.btnLike.classList.toggle("content__elements__button-like-active");
+  handleRemoveLike() {
+    this.btnLike.classList.remove("content__elements__button-like-active");
+  }
+
+  handleAddLike() {
+    this.btnLike.classList.add("content__elements__button-like-active");
   }
 
   _deleteCard() {
@@ -17,20 +32,29 @@ export default class Card {
 
   _setEvents() {
     this.btnLike.addEventListener("click", () => {
-      this._handleLike();
+      if (
+        this.btnLike.className.indexOf(
+          "content__elements__button-like-active"
+        ) > -1
+      ) {
+        this.handleLikeDelete(this.cardData._id);
+      } else {
+        this.handleLikeAdd(this.cardData._id);
+      }
     });
 
     this.btnDelete.addEventListener("click", () => {
-      // this._deleteCard();
-      const overlayCardDelete = document.querySelector("#overlayCardDelete");
-      const popupDelete = new Popup(overlayCardDelete);
-      popupDelete.handleOverlay();
+      this.handleDeleteClick(this.cardData._id);
     });
     this.cardImage.onclick = () => {
       const overlayCardPreview = document.querySelector("#overlayCardPreview");
       const popupImage = new PopupWithImage(overlayCardPreview);
       popupImage.handleOverlay(this.link, this.name);
     };
+  }
+
+  setCardLikes() {
+    this.cardLikes.textContent = this.likes.length;
   }
 
   generateCard() {
@@ -48,9 +72,10 @@ export default class Card {
     this.btnDelete = this.cardItem.querySelector(
       ".content__elements__delete-button"
     );
+    if (!this.myCard) this.btnDelete.remove();
     this.cardImage.src = this.link;
     this.cardTitle.textContent = this.name;
-    this.cardLikes.textContent = this.likes.length;
+    this.setCardLikes();
     this._setEvents();
     return this.element;
   }

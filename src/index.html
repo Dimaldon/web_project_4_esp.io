@@ -164,18 +164,45 @@
 
     <section class="overlay" id="overlayCardDelete">
       <div class="overlay__content">
-        <form
-          class="overlay__form"
-          id="Form
-        CardDelete"
-          novalidate
-        >
+        <form class="overlay__form" id="FormCardDelete" novalidate>
           <h2 class="overlay__title">¿Estás seguro?</h2>
           <button class="overlay__form-submit-button" type="submit">Sí</button>
         </form>
         <button
           class="overlay__form-close-button"
           id="closeCardDeleteOverlay"
+        ></button>
+      </div>
+    </section>
+
+    <!-- pop-up card update avatar -->
+
+    <section class="overlay" id="overlayAvatarUpdate">
+      <div class="overlay__content">
+        <form class="overlay__form" id="imageAvatar" novalidate>
+          <h2 class="overlay__title">Cambiar foto de perfil</h2>
+          <div class="overlay__form-input-grup">
+            <input
+              class="overlay__text-input"
+              type="text"
+              name="place"
+              id="overlay__form-avatar-update"
+              required
+              minlength="2"
+              maxlength="30"
+            />
+          </div>
+          <span
+            class="overlay__form-input-error overlay__form-avatar-update-error"
+          ></span>
+
+          <button class="overlay__form-submit-button" type="submit">
+            Guardar
+          </button>
+        </form>
+        <button
+          class="overlay__form-close-button"
+          id="closeAvatarOverlay"
         ></button>
       </div>
     </section>

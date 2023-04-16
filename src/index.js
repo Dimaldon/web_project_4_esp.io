@@ -4,6 +4,8 @@ import FormValidator from "./components/FormValidator.js";
 import { handleOverlay } from "./components/utils";
 import Api from "./components/api";
 import UserInfo from "./components/UserInfo";
+import PopUpDeleteImage from "./components/PopUpDeleteImage";
+import Popup from "./components/Popup";
 //variable que almacena el array de objetos con las 6 cards iniciales
 const nameInput = document.querySelector("#overlay__form-name"),
   jobInput = document.querySelector("#overlay__form-job"),
@@ -20,11 +22,12 @@ const nameInput = document.querySelector("#overlay__form-name"),
       "Content-Type": "application/json",
     },
   });
-
+let nIdUser;
 api.getInitialUserMe().then((data) => {
   const name = data.name;
   const job = data.about;
   const imagen = data.avatar;
+  nIdUser = data._id;
   const cUserInfo = new UserInfo({
     nameElement,
     jobElement,
@@ -34,6 +37,14 @@ api.getInitialUserMe().then((data) => {
     imagen,
   });
   cUserInfo.setUserInfo(cUserInfo.getUserInfo());
+  renderGallery();
+});
+
+imagenElement.addEventListener("click", function () {
+  const openAvatarPopup = new Popup(
+    document.querySelector("#overlayAvatarUpdate")
+  );
+  openAvatarPopup.handleOverlay();
 });
 
 // pop-up card preview
@@ -44,6 +55,10 @@ document
 document
   .querySelector("#imageForm")
   .addEventListener("submit", handleImageFormSubmit);
+
+document
+  .querySelector("#imageAvatar")
+  .addEventListener("submit", handleAvatarProfileFormSubmit);
 
 // pop-up edit profile
 function handleProfileFormSubmit(evt) {
@@ -63,19 +78,28 @@ function handleProfileFormSubmit(evt) {
     cUserInfo.setUserInfo(cUserInfo.getUserInfo());
     handleOverlay("#overlay__profile-edit");
   });
-  // nameElement.textContent = nameInput.value;
-  // jobElement.textContent = jobInput.value;
 }
 
 // pop-up add new place
 function handleImageFormSubmit(evt) {
   evt.preventDefault();
+
   api.postNewCard(placeInput.value, imageUrlInput.value).then((data) => {
-    const card = new Card(data.link, data.name);
-    grid.prepend(card.generateCard());
+    createCard({
+      cardData: data,
+      eContainer: grid,
+      idUser: nIdUser,
+    });
 
     handleOverlay("#overlay__card-add");
   });
+}
+
+// pop-up update avatar
+
+function handleAvatarProfileFormSubmit(evt) {
+  evt.preventDefault();
+  console.log("actualiza");
 }
 
 // codigo de la galeria
@@ -85,9 +109,11 @@ function renderGallery() {
   api.getInitialCards().then((data) => {
     //crea el grid de la galeria
     data.forEach((item) => {
-      const card = new Card(item.link, item.name, item.likes);
-      //agregalo al grid desde el objeto card, llamando al metodo generateCard
-      grid.append(card.generateCard());
+      createCard({
+        cardData: item,
+        eContainer: grid,
+        idUser: nIdUser,
+      });
     });
   });
   enableValidation();
@@ -108,4 +134,38 @@ function enableValidation() {
   });
 }
 
-renderGallery();
+const overlayCardDelete = document.querySelector("#overlayCardDelete");
+export const popupDeleteImage = new PopUpDeleteImage(overlayCardDelete);
+popupDeleteImage.setEventListeners();
+
+function createCard(oProperties) {
+  const card = new Card(
+    oProperties.cardData,
+    oProperties.cardData.owner._id == oProperties.idUser,
+    (nIdCard) => {
+      popupDeleteImage.handleOverlay();
+      popupDeleteImage.setHandleImageFormDelete(() => {
+        api.deleteCard(nIdCard).then(() => {
+          card._deleteCard();
+          popupDeleteImage.handleOverlay();
+        });
+      });
+    },
+    (nIdCard) => {
+      api.putLikeButtonCard(nIdCard).then((data) => {
+        card.likes = data.likes;
+        card.handleAddLike();
+        card.setCardLikes();
+      });
+    },
+    (nIdCard) => {
+      api.deleteLikeButtonCard(nIdCard).then((data) => {
+        card.likes = data.likes;
+        card.handleRemoveLike();
+        card.setCardLikes();
+      });
+    }
+  );
+  //agregalo al grid desde el objeto card, llamando al metodo generateCard
+  oProperties.eContainer.append(card.generateCard());
+}
