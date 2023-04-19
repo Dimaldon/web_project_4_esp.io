@@ -13,6 +13,7 @@ const nameInput = document.querySelector("#overlay__form-name"),
   jobElement = document.querySelector(".content__profile-description"),
   placeInput = document.querySelector("#overlay__form-place"),
   imageUrlInput = document.querySelector("#overlay__form-imageURL"),
+  avatarInput = document.querySelector("#overlay__form-avatar-update"),
   grid = document.querySelector(".content__elements-grid"),
   imagenElement = document.querySelector(".content__profile-image"),
   api = new Api({
@@ -42,7 +43,24 @@ api.getInitialUserMe().then((data) => {
 
 imagenElement.addEventListener("click", function () {
   const openAvatarPopup = new Popup(
-    document.querySelector("#overlayAvatarUpdate")
+    document.querySelector("#overlayAvatarUpdate"),
+    function () {
+      api.updateUserMeAvatar(avatarInput.value).then((data) => {
+        const name = data.name;
+        const job = data.about;
+        const imagen = data.avatar;
+        const cUserInfo = new UserInfo({
+          nameElement,
+          jobElement,
+          imagenElement,
+          name,
+          job,
+          imagen,
+        });
+        cUserInfo.setUserInfo(cUserInfo.getUserInfo());
+        handleOverlay("#overlayAvatarUpdate");
+      });
+    }
   );
   openAvatarPopup.handleOverlay();
 });
@@ -99,7 +117,21 @@ function handleImageFormSubmit(evt) {
 
 function handleAvatarProfileFormSubmit(evt) {
   evt.preventDefault();
-  console.log("actualiza");
+  api.updateUserMeAvatar(avatarInput.value).then((data) => {
+    const name = data.name;
+    const job = data.about;
+    const imagen = data.avatar;
+    const cUserInfo = new UserInfo({
+      nameElement,
+      jobElement,
+      imagenElement,
+      name,
+      job,
+      imagen,
+    });
+    cUserInfo.setUserInfo(cUserInfo.getUserInfo());
+    handleOverlay("#overlayAvatarUpdate");
+  });
 }
 
 // codigo de la galeria

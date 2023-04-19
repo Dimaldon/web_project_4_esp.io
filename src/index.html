@@ -83,7 +83,11 @@
             class="overlay__form-input-error overlay__form-job-error"
           ></span>
 
-          <button class="overlay__form-submit-button" type="submit">
+          <button
+            class="overlay__form-submit-button"
+            type="submit"
+            data-valordefault="Guardar"
+          >
             Guardar
           </button>
         </form>
@@ -130,7 +134,11 @@
             class="overlay__form-input-error overlay__form-imageURL-error"
           ></span>
 
-          <button class="overlay__form-submit-button" type="submit">
+          <button
+            class="overlay__form-submit-button"
+            type="submit"
+            data-valordefault="Crear"
+          >
             Crear
           </button>
         </form>
@@ -166,7 +174,13 @@
       <div class="overlay__content">
         <form class="overlay__form" id="FormCardDelete" novalidate>
           <h2 class="overlay__title">¿Estás seguro?</h2>
-          <button class="overlay__form-submit-button" type="submit">Sí</button>
+          <button
+            class="overlay__form-submit-button"
+            type="submit"
+            data-valordefault="Sí"
+          >
+            Sí
+          </button>
         </form>
         <button
           class="overlay__form-close-button"
@@ -189,14 +203,17 @@
               id="overlay__form-avatar-update"
               required
               minlength="2"
-              maxlength="30"
             />
           </div>
           <span
             class="overlay__form-input-error overlay__form-avatar-update-error"
           ></span>
 
-          <button class="overlay__form-submit-button" type="submit">
+          <button
+            class="overlay__form-submit-button"
+            type="submit"
+            data-valordefault="Guardar"
+          >
             Guardar
           </button>
         </form>
