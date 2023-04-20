@@ -6,6 +6,7 @@ import Api from "./components/api";
 import UserInfo from "./components/UserInfo";
 import PopUpDeleteImage from "./components/PopUpDeleteImage";
 import Popup from "./components/Popup";
+import PopupWithForms from "./components/PopupWithForms";
 //variable que almacena el array de objetos con las 6 cards iniciales
 const nameInput = document.querySelector("#overlay__form-name"),
   jobInput = document.querySelector("#overlay__form-job"),
@@ -42,7 +43,7 @@ api.getInitialUserMe().then((data) => {
 });
 
 imagenElement.addEventListener("click", function () {
-  const openAvatarPopup = new Popup(
+  const openAvatarPopup = new PopupWithForms(
     document.querySelector("#overlayAvatarUpdate"),
     function () {
       api.updateUserMeAvatar(avatarInput.value).then((data) => {
@@ -58,59 +59,78 @@ imagenElement.addEventListener("click", function () {
           imagen,
         });
         cUserInfo.setUserInfo(cUserInfo.getUserInfo());
-        handleOverlay("#overlayAvatarUpdate");
+        openAvatarPopup.handleOverlay();
+        openAvatarPopup.setButtonReset();
       });
     }
   );
+  openAvatarPopup.setEventListeners();
   openAvatarPopup.handleOverlay();
 });
-
-// pop-up card preview
-document
-  .querySelector("#profileForm")
-  .addEventListener("submit", handleProfileFormSubmit);
 
 document
   .querySelector("#imageForm")
   .addEventListener("submit", handleImageFormSubmit);
 
+// abrir pop-up de nuevo lugar
+document
+  .querySelector(".content__profile-button-add")
+  .addEventListener("click", function () {
+    const openNewImagePopup = new PopupWithForms(
+      document.querySelector("#overlay__card-add"),
+      function () {
+        api.postNewCard(placeInput.value, imageUrlInput.value).then((data) => {
+          createCard({
+            cardData: data,
+            eContainer: grid,
+            idUser: nIdUser,
+          });
+
+          openNewImagePopup.handleOverlay();
+          openNewImagePopup.setButtonReset();
+        });
+      }
+    );
+    openNewImagePopup.setEventListeners();
+    openNewImagePopup.handleOverlay();
+  });
+
 document
   .querySelector("#imageAvatar")
   .addEventListener("submit", handleAvatarProfileFormSubmit);
 
-// pop-up edit profile
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  api.patchInitialUserMe(nameInput.value, jobInput.value).then((data) => {
-    const name = data.name;
-    const job = data.about;
-    const imagen = data.avatar;
-    const cUserInfo = new UserInfo({
-      nameElement,
-      jobElement,
-      imagenElement,
-      name,
-      job,
-      imagen,
-    });
-    cUserInfo.setUserInfo(cUserInfo.getUserInfo());
-    handleOverlay("#overlay__profile-edit");
+// abrir formulario del perfil
+document
+  .querySelector(".content__profile-button-edit")
+  .addEventListener("click", function () {
+    const openProfilePopup = new PopupWithForms(
+      document.querySelector("#overlay__profile-edit"),
+      function () {
+        api.patchInitialUserMe(nameInput.value, jobInput.value).then((data) => {
+          const name = data.name;
+          const job = data.about;
+          const imagen = data.avatar;
+          const cUserInfo = new UserInfo({
+            nameElement,
+            jobElement,
+            imagenElement,
+            name,
+            job,
+            imagen,
+          });
+          cUserInfo.setUserInfo(cUserInfo.getUserInfo());
+          openProfilePopup.handleOverlay();
+          openProfilePopup.setButtonReset();
+        });
+      }
+    );
+    openProfilePopup.setEventListeners();
+    openProfilePopup.handleOverlay();
   });
-}
 
 // pop-up add new place
 function handleImageFormSubmit(evt) {
   evt.preventDefault();
-
-  api.postNewCard(placeInput.value, imageUrlInput.value).then((data) => {
-    createCard({
-      cardData: data,
-      eContainer: grid,
-      idUser: nIdUser,
-    });
-
-    handleOverlay("#overlay__card-add");
-  });
 }
 
 // pop-up update avatar
