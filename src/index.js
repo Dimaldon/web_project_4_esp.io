@@ -2,7 +2,7 @@ import "./page/index.css";
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidator.js";
 import { handleOverlay } from "./components/utils";
-import Api from "./components/api";
+import Api from "./components/Api";
 import UserInfo from "./components/UserInfo";
 import PopUpDeleteImage from "./components/PopUpDeleteImage";
 import Popup from "./components/Popup";
@@ -134,7 +134,6 @@ function handleImageFormSubmit(evt) {
 }
 
 // pop-up update avatar
-
 function handleAvatarProfileFormSubmit(evt) {
   evt.preventDefault();
   api.updateUserMeAvatar(avatarInput.value).then((data) => {
