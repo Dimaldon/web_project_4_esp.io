@@ -1,10 +1,6 @@
 .content__profile-image {
-  width: 7.9rem;
-  height: 7.9rem;
+  width: 7.5rem;
   border-radius: 50%;
-}
-
-.content__profile-image:hover {
-  opacity: 60%;
-  cursor: pointer;
+  padding-top: 38.25px;
+  padding-bottom: 26.25px;
 }

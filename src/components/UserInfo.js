@@ -1,23 +1,19 @@
-export default class UserInfo {
-  constructor({ nameElement, jobElement, imagenElement, name, job, imagen }) {
+class UserInfo {
+  constructor({ nameElement, jobElement }) {
     this.nameElement = nameElement;
     this.jobElement = jobElement;
-    this.imagenElement = imagenElement;
-    this.name = name;
-    this.job = job;
-    this.imagen = imagen;
+    this.name = "Jacques Cousteau";
+    this.job = "Explorador";
   }
 
   getUserInfo() {
-    return { name: this.name, job: this.job, imagen: this.imagen };
+    return { name: this.name, job: this.job };
   }
 
-  setUserInfo({ name, job, imagen }) {
+  setUserInfo({ name, job }) {
     this.name = name;
     this.job = job;
-    this.imagen = imagen;
     this.nameElement.textContent = this.name;
-    this.jobElement.textContent = this.job;
-    this.imagenElement.src = this.imagen;
+    this.job.textContent = this.job;
   }
 }
