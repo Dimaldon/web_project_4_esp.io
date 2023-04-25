@@ -21,11 +21,13 @@
 
     <main class="content">
       <section class="profile">
-        <img
-          class="content__profile-image"
-          src="<%= require('./images/profile-image.jpg')%>"
-          alt="jacques cousteau"
-        />
+        <div class="content__profile-avatar-overlay">
+          <img
+            class="content__profile-image"
+            src="<%= require('./images/profile-image.jpg')%>"
+            alt="jacques cousteau"
+          />
+        </div>
         <div class="content__profile-title-grup">
           <div class="content__profile-title-container">
             <h1 class="content__profile-title"></h1>
