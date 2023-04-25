@@ -1,8 +1,8 @@
-# Proyecto 8 "Alrededor de los EE.UU."
+# Proyecto 9 "Alrededor de los EE.UU."
 
 ## Descripción del proyecto:
 
-El presente proyecto pretende crear un sitio web de una sola página que se adapte a dispositivos móviles y desktops, para el proyecto 8 se centra en la refactorización y a utilizar clases para reescribir porciones particulares del código.
+El presente proyecto pretende crear un sitio web de una sola página que se adapte a dispositivos móviles y desktops, para el proyecto 9 se centra en la refactorización y a utilizar clases para reescribir porciones particulares del código.
 
 ## Tecnologías utilizadas:
 
@@ -22,6 +22,7 @@ El presente proyecto pretende crear un sitio web de una sola página que se adap
 - Formularios
 - Validación de formularios
 - Programación orientada a objetos
+- Trabajo con APIs
 
 Herramientas Extra
 
