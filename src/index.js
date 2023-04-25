@@ -2,76 +2,170 @@ import "./page/index.css";
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidator.js";
 import { handleOverlay } from "./components/utils";
+import Api from "./components/Api";
+import UserInfo from "./components/UserInfo";
+import PopUpDeleteImage from "./components/PopUpDeleteImage";
+import Popup from "./components/Popup";
+import PopupWithForms from "./components/PopupWithForms";
 //variable que almacena el array de objetos con las 6 cards iniciales
-const initialCards = [
-    {
-      name: "Valle de Yosemite",
-      link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-    },
-    {
-      name: "Lago Louise",
-      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-    },
-    {
-      name: "Montañas Calvas",
-      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-    },
-    {
-      name: "Latemar",
-      link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-    },
-    {
-      name: "Parque Nacional de la Vanoise",
-      link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-    },
-    {
-      name: "Lago di Braies",
-      link: "https://code.s3.yandex.net/web-code/lago.jpg",
-    },
-  ],
-  nameInput = document.querySelector("#overlay__form-name"),
+const nameInput = document.querySelector("#overlay__form-name"),
   jobInput = document.querySelector("#overlay__form-job"),
   nameElement = document.querySelector(".content__profile-title"),
   jobElement = document.querySelector(".content__profile-description"),
   placeInput = document.querySelector("#overlay__form-place"),
   imageUrlInput = document.querySelector("#overlay__form-imageURL"),
-  grid = document.querySelector(".content__elements-grid");
-// pop-up card preview
-document
-  .querySelector("#profileForm")
-  .addEventListener("submit", handleProfileFormSubmit);
+  avatarInput = document.querySelector("#overlay__form-avatar-update"),
+  grid = document.querySelector(".content__elements-grid"),
+  imagenElement = document.querySelector(".content__profile-image"),
+  api = new Api({
+    baseUrl: "https://around.nomoreparties.co/v1/web_es_cohort_03",
+    headers: {
+      authorization: "361c2497-73b4-4dd1-9a02-2225ff5963b5",
+      "Content-Type": "application/json",
+    },
+  });
+let nIdUser;
+api.getInitialUserMe().then((data) => {
+  const name = data.name;
+  const job = data.about;
+  const imagen = data.avatar;
+  nIdUser = data._id;
+  const cUserInfo = new UserInfo({
+    nameElement,
+    jobElement,
+    imagenElement,
+    name,
+    job,
+    imagen,
+  });
+  cUserInfo.setUserInfo(cUserInfo.getUserInfo());
+  renderGallery();
+});
+
+imagenElement.addEventListener("click", function () {
+  const openAvatarPopup = new PopupWithForms(
+    document.querySelector("#overlayAvatarUpdate"),
+    function () {
+      api.updateUserMeAvatar(avatarInput.value).then((data) => {
+        const name = data.name;
+        const job = data.about;
+        const imagen = data.avatar;
+        const cUserInfo = new UserInfo({
+          nameElement,
+          jobElement,
+          imagenElement,
+          name,
+          job,
+          imagen,
+        });
+        cUserInfo.setUserInfo(cUserInfo.getUserInfo());
+        openAvatarPopup.handleOverlay();
+        openAvatarPopup.setButtonReset();
+      });
+    }
+  );
+  openAvatarPopup.setEventListeners();
+  openAvatarPopup.handleOverlay();
+});
 
 document
   .querySelector("#imageForm")
   .addEventListener("submit", handleImageFormSubmit);
 
-// pop-up edit profile
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  nameElement.textContent = nameInput.value;
-  jobElement.textContent = jobInput.value;
-  handleOverlay("#overlay__profile-edit");
-}
+// abrir pop-up de nuevo lugar
+document
+  .querySelector(".content__profile-button-add")
+  .addEventListener("click", function () {
+    const openNewImagePopup = new PopupWithForms(
+      document.querySelector("#overlay__card-add"),
+      function () {
+        api.postNewCard(placeInput.value, imageUrlInput.value).then((data) => {
+          createCard({
+            cardData: data,
+            eContainer: grid,
+            idUser: nIdUser,
+          });
+
+          openNewImagePopup.handleOverlay();
+          openNewImagePopup.setButtonReset();
+        });
+      }
+    );
+    openNewImagePopup.setEventListeners();
+    openNewImagePopup.handleOverlay();
+  });
+
+document
+  .querySelector("#imageAvatar")
+  .addEventListener("submit", handleAvatarProfileFormSubmit);
+
+// abrir formulario del perfil
+document
+  .querySelector(".content__profile-button-edit")
+  .addEventListener("click", function () {
+    const openProfilePopup = new PopupWithForms(
+      document.querySelector("#overlay__profile-edit"),
+      function () {
+        api.patchInitialUserMe(nameInput.value, jobInput.value).then((data) => {
+          const name = data.name;
+          const job = data.about;
+          const imagen = data.avatar;
+          const cUserInfo = new UserInfo({
+            nameElement,
+            jobElement,
+            imagenElement,
+            name,
+            job,
+            imagen,
+          });
+          cUserInfo.setUserInfo(cUserInfo.getUserInfo());
+          openProfilePopup.handleOverlay();
+          openProfilePopup.setButtonReset();
+        });
+      }
+    );
+    openProfilePopup.setEventListeners();
+    openProfilePopup.handleOverlay();
+  });
 
 // pop-up add new place
 function handleImageFormSubmit(evt) {
   evt.preventDefault();
+}
 
-  const card = new Card(imageUrlInput.value, placeInput.value);
-  grid.prepend(card.generateCard());
-
-  handleOverlay("#overlay__card-add");
+// pop-up update avatar
+function handleAvatarProfileFormSubmit(evt) {
+  evt.preventDefault();
+  api.updateUserMeAvatar(avatarInput.value).then((data) => {
+    const name = data.name;
+    const job = data.about;
+    const imagen = data.avatar;
+    const cUserInfo = new UserInfo({
+      nameElement,
+      jobElement,
+      imagenElement,
+      name,
+      job,
+      imagen,
+    });
+    cUserInfo.setUserInfo(cUserInfo.getUserInfo());
+    handleOverlay("#overlayAvatarUpdate");
+  });
 }
 
 // codigo de la galeria
 function renderGallery() {
   //obtener grid de la galeria
   const grid = document.querySelector(".content__elements-grid");
-  //crea el grid de la galeria
-  initialCards.forEach((item) => {
-    const card = new Card(item.link, item.name);
-    //agregalo al grid desde el objeto card, llamando al metodo generateCard
-    grid.append(card.generateCard());
+  api.getInitialCards().then((data) => {
+    //crea el grid de la galeria
+    data.forEach((item) => {
+      createCard({
+        cardData: item,
+        eContainer: grid,
+        idUser: nIdUser,
+      });
+    });
   });
   enableValidation();
 }
@@ -91,4 +185,38 @@ function enableValidation() {
   });
 }
 
-renderGallery();
+const overlayCardDelete = document.querySelector("#overlayCardDelete");
+export const popupDeleteImage = new PopUpDeleteImage(overlayCardDelete);
+popupDeleteImage.setEventListeners();
+
+function createCard(oProperties) {
+  const card = new Card(
+    oProperties.cardData,
+    oProperties.cardData.owner._id == oProperties.idUser,
+    (nIdCard) => {
+      popupDeleteImage.handleOverlay();
+      popupDeleteImage.setHandleImageFormDelete(() => {
+        api.deleteCard(nIdCard).then(() => {
+          card._deleteCard();
+          popupDeleteImage.handleOverlay();
+        });
+      });
+    },
+    (nIdCard) => {
+      api.putLikeButtonCard(nIdCard).then((data) => {
+        card.likes = data.likes;
+        card.handleAddLike();
+        card.setCardLikes();
+      });
+    },
+    (nIdCard) => {
+      api.deleteLikeButtonCard(nIdCard).then((data) => {
+        card.likes = data.likes;
+        card.handleRemoveLike();
+        card.setCardLikes();
+      });
+    }
+  );
+  //agregalo al grid desde el objeto card, llamando al metodo generateCard
+  oProperties.eContainer.append(card.generateCard());
+}
