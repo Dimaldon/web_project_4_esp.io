@@ -32,4 +32,4 @@ Herramientas Extra
 
 ## Link del proyecto en git:
 
-[Proyecto 8 Alrededor de los EE.UU.](https://dimaldon.github.io/web_project_4_esp.io/)
+[Proyecto 9 Alrededor de los EE.UU.](https://dimaldon.github.io/web_project_4_esp.io/)
