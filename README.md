@@ -29,7 +29,7 @@ Herramientas Extra
 - Figma
 - RunJS
 - Webpack
-
+- WebTest
 ## Link del proyecto en git:
 
 [Proyecto 9 Alrededor de los EE.UU.](https://dimaldon.github.io/web_project_4_esp.io/)
