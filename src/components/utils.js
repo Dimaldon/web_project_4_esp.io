@@ -1,21 +1,10 @@
+import PopupWithForms from "./PopupWithForms";
+
+// abrir y cerrar el overlay
 export function handleOverlay(id) {
   const overlayElement = document.querySelector(id);
   overlayElement.classList.toggle("overlay__visible");
 }
-
-// abrir formulario del perfil
-document
-  .querySelector(".content__profile-button-edit")
-  .addEventListener("click", function () {
-    handleOverlay("#overlay__profile-edit");
-  });
-
-// abrir pop-up de nuevo lugar
-document
-  .querySelector(".content__profile-button-add")
-  .addEventListener("click", function () {
-    handleOverlay("#overlay__card-add");
-  });
 
 // cierre con tecla X
 const overlays = document.querySelectorAll(".overlay");
