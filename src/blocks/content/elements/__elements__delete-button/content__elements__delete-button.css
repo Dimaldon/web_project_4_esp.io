@@ -12,6 +12,6 @@
   transition: opacity 0.5s;
 }
 
-.element__delete-button:hover {
+.content__elements__delete-button:hover {
   opacity: 0.6;
 }
