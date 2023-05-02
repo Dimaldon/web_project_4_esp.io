@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve",
-    "deploy": "webpack --mode production && gh-pages -d dist",
-    "predeploy": "rm -rf dist && mkdir dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "author": "",
   "license": "ISC",

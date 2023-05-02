@@ -1,12 +1,11 @@
-import "./page/index.css";
-import Card from "./components/Card.js";
-import FormValidator from "./components/FormValidator.js";
-import { handleOverlay } from "./components/utils";
-import Api from "./components/Api";
-import UserInfo from "./components/UserInfo";
-import PopUpDeleteImage from "./components/PopUpDeleteImage";
-import Popup from "./components/Popup";
-import PopupWithForms from "./components/PopupWithForms";
+import "./index.css";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import { handleOverlay } from "../utils/utils";
+import Api from "../components/api";
+import UserInfo from "../components/UserInfo";
+import PopUpDeleteImage from "../components/PopUpDeleteImage";
+import PopupWithForms from "../components/PopupWithForms";
 //variable que almacena el array de objetos con las 6 cards iniciales
 const nameInput = document.querySelector("#overlay__form-name"),
   jobInput = document.querySelector("#overlay__form-job"),
