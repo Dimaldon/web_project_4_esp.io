@@ -10,10 +10,6 @@ export default class Api {
       method: method,
       headers: this._headers,
       body: body,
-      //   body: JSON.stringify({
-      //     name: name,
-      //     about: about,
-      //   }),
     }).then((res) => {
       if (res.ok) {
         return res.json();
