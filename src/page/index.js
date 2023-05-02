@@ -71,26 +71,26 @@ document
   .querySelector("#imageForm")
   .addEventListener("submit", handleImageFormSubmit);
 
+const openNewImagePopup = new PopupWithForms(
+  document.querySelector("#overlay__card-add"),
+  function () {
+    api.postNewCard(placeInput.value, imageUrlInput.value).then((data) => {
+      createCard({
+        cardData: data,
+        eContainer: grid,
+        idUser: nIdUser,
+      });
+
+      openNewImagePopup.handleOverlay();
+      openNewImagePopup.setButtonReset();
+    });
+  }
+);
+openNewImagePopup.setEventListeners();
 // abrir pop-up de nuevo lugar
 document
   .querySelector(".content__profile-button-add")
   .addEventListener("click", function () {
-    const openNewImagePopup = new PopupWithForms(
-      document.querySelector("#overlay__card-add"),
-      function () {
-        api.postNewCard(placeInput.value, imageUrlInput.value).then((data) => {
-          createCard({
-            cardData: data,
-            eContainer: grid,
-            idUser: nIdUser,
-          });
-
-          openNewImagePopup.handleOverlay();
-          openNewImagePopup.setButtonReset();
-        });
-      }
-    );
-    openNewImagePopup.setEventListeners();
     openNewImagePopup.handleOverlay();
   });
 
@@ -198,6 +198,7 @@ function createCard(oProperties) {
         api.deleteCard(nIdCard).then(() => {
           card._deleteCard();
           popupDeleteImage.handleOverlay();
+          popupDeleteImage.setButtonReset();
         });
       });
     },
@@ -217,5 +218,5 @@ function createCard(oProperties) {
     }
   );
   //agregalo al grid desde el objeto card, llamando al metodo generateCard
-  oProperties.eContainer.append(card.generateCard());
+  oProperties.eContainer.prepend(card.generateCard());
 }
