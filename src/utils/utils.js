@@ -1,5 +1,3 @@
-import PopupWithForms from "./PopupWithForms";
-
 // abrir y cerrar el overlay
 export function handleOverlay(id) {
   const overlayElement = document.querySelector(id);
