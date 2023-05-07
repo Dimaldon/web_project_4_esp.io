@@ -41,29 +41,30 @@ api.getInitialUserMe().then((data) => {
   renderGallery();
 });
 
-imagenElement.addEventListener("click", function () {
-  const openAvatarPopup = new PopupWithForms(
-    document.querySelector("#overlayAvatarUpdate"),
-    function () {
-      api.updateUserMeAvatar(avatarInput.value).then((data) => {
-        const name = data.name;
-        const job = data.about;
-        const imagen = data.avatar;
-        const cUserInfo = new UserInfo({
-          nameElement,
-          jobElement,
-          imagenElement,
-          name,
-          job,
-          imagen,
-        });
-        cUserInfo.setUserInfo(cUserInfo.getUserInfo());
-        openAvatarPopup.handleOverlay();
-        openAvatarPopup.setButtonReset();
+const openAvatarPopup = new PopupWithForms(
+  document.querySelector("#overlayAvatarUpdate"),
+  function () {
+    api.updateUserMeAvatar(avatarInput.value).then((data) => {
+      const name = data.name;
+      const job = data.about;
+      const imagen = data.avatar;
+      const cUserInfo = new UserInfo({
+        nameElement,
+        jobElement,
+        imagenElement,
+        name,
+        job,
+        imagen,
       });
-    }
-  );
-  openAvatarPopup.setEventListeners();
+      cUserInfo.setUserInfo(cUserInfo.getUserInfo());
+      openAvatarPopup.handleOverlay();
+      openAvatarPopup.setButtonReset();
+    });
+  }
+);
+openAvatarPopup.setEventListeners();
+
+imagenElement.addEventListener("click", function () {
   openAvatarPopup.handleOverlay();
 });
 
@@ -99,31 +100,33 @@ document
   .addEventListener("submit", handleAvatarProfileFormSubmit);
 
 // abrir formulario del perfil
+
+const openProfilePopup = new PopupWithForms(
+  document.querySelector("#overlay__profile-edit"),
+  function () {
+    api.patchInitialUserMe(nameInput.value, jobInput.value).then((data) => {
+      const name = data.name;
+      const job = data.about;
+      const imagen = data.avatar;
+      const cUserInfo = new UserInfo({
+        nameElement,
+        jobElement,
+        imagenElement,
+        name,
+        job,
+        imagen,
+      });
+      cUserInfo.setUserInfo(cUserInfo.getUserInfo());
+      openProfilePopup.handleOverlay();
+      openProfilePopup.setButtonReset();
+    });
+  }
+);
+openProfilePopup.setEventListeners();
+
 document
   .querySelector(".content__profile-button-edit")
   .addEventListener("click", function () {
-    const openProfilePopup = new PopupWithForms(
-      document.querySelector("#overlay__profile-edit"),
-      function () {
-        api.patchInitialUserMe(nameInput.value, jobInput.value).then((data) => {
-          const name = data.name;
-          const job = data.about;
-          const imagen = data.avatar;
-          const cUserInfo = new UserInfo({
-            nameElement,
-            jobElement,
-            imagenElement,
-            name,
-            job,
-            imagen,
-          });
-          cUserInfo.setUserInfo(cUserInfo.getUserInfo());
-          openProfilePopup.handleOverlay();
-          openProfilePopup.setButtonReset();
-        });
-      }
-    );
-    openProfilePopup.setEventListeners();
     openProfilePopup.handleOverlay();
   });
 
