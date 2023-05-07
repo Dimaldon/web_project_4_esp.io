@@ -2,6 +2,7 @@
   width: 7.9rem;
   height: 7.9rem;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .content__profile-image:hover {
