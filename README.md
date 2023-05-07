@@ -2,7 +2,7 @@
 
 ## Descripción del proyecto:
 
-El presente proyecto pretende crear un sitio web de una sola página que se adapte a dispositivos móviles y desktops, para el proyecto 9 se centra en la refactorización y a utilizar clases para reescribir porciones particulares del código.
+Esta landing page que estás viendo es una colección de la experiencia de viaje de un usuario a través de los Estados Unidos, este proyecto se centra en la refactorización y a utilizar clases para reescribir porciones particulares del código, así como la interacción cliente-servidor por medio de API.
 
 ## Tecnologías utilizadas:
 
@@ -22,13 +22,16 @@ El presente proyecto pretende crear un sitio web de una sola página que se adap
 - Formularios
 - Validación de formularios
 - Programación orientada a objetos
-- Trabajo con APIs
+- Trabajo con API
 
 Herramientas Extra
 
 - Figma
 - RunJS
 - Webpack
+- Babel
+- PostCSS
+- Node JS
 
 ## Link del proyecto en git:
 
