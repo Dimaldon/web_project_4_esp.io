@@ -49,6 +49,7 @@ export default class Card {
     this.cardImage.onclick = () => {
       const overlayCardPreview = document.querySelector("#overlayCardPreview");
       const popupImage = new PopupWithImage(overlayCardPreview);
+      popupImage.setEventListeners();
       popupImage.handleOverlay(this.link, this.name);
     };
   }

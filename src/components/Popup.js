@@ -1,9 +1,13 @@
 export default class Popup {
   constructor(overlayElement) {
     this.overlayElement = overlayElement;
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   handleOverlay() {
+    this._identificaOverlayAbierto()
+      ? document.removeEventListener("keydown", this._handleEscClose)
+      : document.addEventListener("keydown", this._handleEscClose);
     this.overlayElement.classList.toggle("overlay__visible");
   }
 
